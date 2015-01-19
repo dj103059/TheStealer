@@ -15,7 +15,7 @@ public class Guards extends Entity{
 	 *  The guard will check the adjacent Room
 	 * @return True if he can see the player
 	 */
-	public boolean check(){
+	public boolean check(Player p){
 		/**
 		if (active){
 			int x=currentRoom.getX();	// Abscissa
@@ -25,11 +25,12 @@ public class Guards extends Entity{
 			Entity east=get(x-1,y).getPlayer();
 			Entity west=get(x+1,y).getPlayer();
 			Entity current=get(x,y).getPlayer();
-			if (north||south||east||west||current){return true&&!blibed;}	// If he see the player
+			if (north||south||east||west||current){return true&&!blibed&&!p.isHidden();}	// If he see the player
 		}
 		return false;
 		**/
 		return false;
 	}
 	public void switche(){active=!active;}
+	public boolean move(Player p){return check(p);}
 }

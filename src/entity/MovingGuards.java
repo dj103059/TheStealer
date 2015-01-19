@@ -59,10 +59,11 @@ public class MovingGuards extends Guards{
 	/**
 	 * Manage the movements of the guards
 	 * @return True if the guards see a player
+	 * @overide
 	 */
-	public boolean move(){
+	public boolean move(Player p){
 		change();
-		return check();
+		return check(p);
 	}
 	// Setters
 	public void corrupt(){bribed=true;}
