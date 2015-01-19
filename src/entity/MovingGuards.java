@@ -36,7 +36,7 @@ public class MovingGuards extends Guards{
 		int noiseSouth=tab[x][y-1].getNoise()+tab[x+1][y-1].getNoise()+tab[x-1][y-1].getNoise();
 		int noiseEast=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
 		int noiseWest=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
-		int max=maths.max(noiseNorth, noiseSouth, noiseEast, noiseWest);
+		int max= Math.max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if (max==noiseNorth){
 			currentRoom=tab[x][y+1];
 		}

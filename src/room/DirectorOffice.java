@@ -1,5 +1,5 @@
 package room;
 
-public class DirectorOffice {
+public class DirectorOffice extends RoomPass{
 
 }

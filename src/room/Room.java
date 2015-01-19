@@ -22,6 +22,7 @@ public class Room {
     //position of the room in the map
     private int x;
     private int y;
+    private int noise = 0;
     
     
     /**
@@ -168,6 +169,14 @@ public class Room {
     	}
     	return false;
     }
+
+	public int getNoise() {
+		return noise;
+	}
+
+	public void setNoise(int noise) {
+		this.noise = noise;
+	}
 
 
 }

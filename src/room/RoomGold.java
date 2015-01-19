@@ -1,5 +1,5 @@
 package room;
 
-public class RoomGold {
+public class RoomGold extends RoomPass{
 
 }
