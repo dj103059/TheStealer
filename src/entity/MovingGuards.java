@@ -10,50 +10,47 @@ public class MovingGuards extends Guards{
 	/**
 	 * Generate a random move
 	 */
-	public void randomMove(){
+	public void randomMove(Room[][] tab){
 		int x=currentRoom.getX();	// Abscissa
 		int y=currentRoom.getY();	// Ordered
-		ArrayList<Room> next;
+		ArrayList<Room> next=new ArrayList<Room>();
 		Room tmp;
-		/**
-		tmp=get(x+1,y);
-		if  (tmp){next.add(tmp));
-		tmp=get(x-1,y);
-		if  (tmp){next.add(tmp));
-		tmp=get(x,y+1);
-		if  (tmp){next.add(tmp));
-		tmp=get(x,y-1);
-		if  (tmp){next.add(tmp));
-		int ran=Maths.random()*next.size();
+		tmp=tab[x+1][y];
+		if  (tmp!=null){next.add(tmp);}
+		tmp=tab[x-1][y];
+		if  (tmp!=null){next.add(tmp);}
+		tmp=tab[x][y+1];
+		if  (tmp!=null){next.add(tmp);}
+		tmp=tab[x][y-1];
+		if  (tmp!=null){next.add(tmp);}
+		int ran=(int)Math.random()*next.size();
 		currentRoom=next.get(ran);
-		**/
-				
-	}
+		}
 	/**
 	 * Allows passage from one room to another	
 	 */
-	public void change(){
+	public void change(Room[][] tab){
 		int x=currentRoom.getX();	// Abscissa
 		int y=currentRoom.getY();	// Ordered
-		int noiseNorth=get(x,y+1).getNoise()+get(x+1,y+1).getNoise()+get(x-1,y+1).getNoise();
-		int noiseSouth=get(x,y-1).getNoise()+get(x+1,y-1).getNoise()+get(x-1,y-1).getNoise();
-		int noiseEast=get(x-1,y).getNoise()+get(x-1,y-1).getNoise()+get(x-1,y+1).getNoise();
-		int noiseWest=get(x+1,y).getNoise()+get(x+1,y+1).getNoise()+get(x+1,y-1).getNoise();
+		int noiseNorth=tab[x][y+1].getNoise()+tab[x+1][y+1].getNoise()+tab[x-1][y+1].getNoise();
+		int noiseSouth=tab[x][y-1].getNoise()+tab[x+1][y-1].getNoise()+tab[x-1][y-1].getNoise();
+		int noiseEast=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
+		int noiseWest=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
 		int max=maths.max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if (max==noiseNorth){
-			currentRoom=get(x,y+1);
+			currentRoom=tab[x][y+1];
 		}
 		else if (max==noiseSouth){
-			currentRoom=get(x,y-1);
+			currentRoom=tab[x][y-1];
 		}
-		else if (max==noiseLeft){
-			currentRoom=get(x-1,y);
+		else if (max==noiseEast){
+			currentRoom=tab[x-1][y];
 		}
-		else if (max==noiseRight){
-			currentRoom=get(x+,y);
+		else if (max==noiseWest){
+			currentRoom=tab[x+1][y];
 		}
 		else if (max==0){
-			randomMove();
+			randomMove(tab);
 		}
 	} 
 	/**
@@ -62,9 +59,9 @@ public class MovingGuards extends Guards{
 	 * 
 	 */
 	@Override
-	public boolean move(Player p){
-		change();
-		return check(p);
+	public boolean move(Player p, Room[][] tab){
+		change(tab);
+		return check(p,tab);
 	}
 	// Setters
 	public void corrupt(){bribed=true;}
