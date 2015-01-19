@@ -10,8 +10,6 @@ public class Player extends Entity{
 	private int weight=0;
 	private int maxWeight;
 	public Player(int maxWeight){
-		inventory.add(new Map());
-		inventory.add(new Clock());
 		this.maxWeight=maxWeight;
 		hidden=false;
 	}
@@ -22,8 +20,6 @@ public class Player extends Entity{
 	public int getMaxWeight(){return maxWeight;}
 	public ArrayList<Item> getInventory(){return inventory;}
 	@Override
-
-	
 	public boolean equals(Object obj){
 		if (this==obj){return true;}
 		else if (obj instanceof Player){
@@ -36,4 +32,6 @@ public class Player extends Entity{
 		}
 		return false;
 	}
+	@Override
+	public int getType(){return 3;}
 }

@@ -1,4 +1,6 @@
 package entity;
+import java.util.ArrayList;
+
 import room.*;
 public class MovingGuards extends Guards{
 
@@ -9,11 +11,11 @@ public class MovingGuards extends Guards{
 	 * Generate a random move
 	 */
 	public void randomMove(){
-		/**
 		int x=currentRoom.getX();	// Abscissa
 		int y=currentRoom.getY();	// Ordered
 		ArrayList<Room> next;
 		Room tmp;
+		/**
 		tmp=get(x+1,y);
 		if  (tmp){next.add(tmp));
 		tmp=get(x-1,y);
@@ -31,7 +33,6 @@ public class MovingGuards extends Guards{
 	 * Allows passage from one room to another	
 	 */
 	public void change(){
-		/**
 		int x=currentRoom.getX();	// Abscissa
 		int y=currentRoom.getY();	// Ordered
 		int noiseNorth=get(x,y+1).getNoise()+get(x+1,y+1).getNoise()+get(x-1,y+1).getNoise();
@@ -54,13 +55,13 @@ public class MovingGuards extends Guards{
 		else if (max==0){
 			randomMove();
 		}
-		**/
 	} 
 	/**
 	 * Manage the movements of the guards
 	 * @return True if the guards see a player
-	 * @overide
+	 * 
 	 */
+	@Override
 	public boolean move(Player p){
 		change();
 		return check(p);

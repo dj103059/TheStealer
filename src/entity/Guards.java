@@ -16,7 +16,7 @@ public class Guards extends Entity{
 	 * @return True if he can see the player
 	 */
 	public boolean check(Player p){
-		/**
+		
 		if (active){
 			int x=currentRoom.getX();	// Abscissa
 			int y=currentRoom.getY();	// Ordered	
@@ -28,9 +28,9 @@ public class Guards extends Entity{
 			if (north||south||east||west||current){return true&&!blibed&&!p.isHidden();}	// If he see the player
 		}
 		return false;
-		**/
-		return false;
 	}
+	@Override
+	public int getType(){return 2;}
 	public void switche(){active=!active;}
 	public boolean move(Player p){return check(p);}
 }

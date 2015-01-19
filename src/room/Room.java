@@ -1,12 +1,12 @@
 package room;
 
 import item.Item;
+import entity.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-import entity.Entity;
 /**
  * a room 
  *
@@ -161,6 +161,13 @@ public class Room {
     public ArrayList<Entity> getListofentity() {
 		return listofentity;
 	}
+    public boolean isPlayer(){
+    	ArrayList<Entity> tmp=this.getListofentity();
+    	for (Entity t : tmp){
+    		if (t.getType()==3){return true;}
+    	}
+    	return false;
+    }
 
 
 }

@@ -8,6 +8,7 @@ public abstract class Entity {
 		else{return false;}
 	}
 	// Getteurs
+	public int getType(){return 1;}
 	public Room getCurrentRoom(){return currentRoom;}
 	@Override
 	public boolean equals(Object obj){
