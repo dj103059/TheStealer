@@ -64,7 +64,7 @@ public class MovingGuards extends Guards{
 		return check(p,tab);
 	}
 	public int max(int val1, int val2, int val3, int val4){
-		if ((val1>=val2)&&(val1>=val3)&&(val1>=val4)){return val1;}
+		if ((val1>val2)&&(val1>val3)&&(val1>val4)){return val1;}
 		else if ((val2>=val1)&&(val2>=val3)&&(val2>=val4)){return val2;}
 		else if ((val3>=val1)&&(val3>=val2)&&(val3>=val4)){return val3;}
 		else if ((val4>=val1)&&(val4>=val3)&&(val4>=val2)){return val4;}
