@@ -36,7 +36,7 @@ public class MovingGuards extends Guards{
 		int noiseSouth=tab[x][y-1].getNoise()+tab[x+1][y-1].getNoise()+tab[x-1][y-1].getNoise();
 		int noiseEast=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
 		int noiseWest=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
-		int max= Math.max(noiseNorth, noiseSouth, noiseEast, noiseWest);
+		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if (max==noiseNorth){
 			currentRoom=tab[x][y+1];
 		}
@@ -62,6 +62,13 @@ public class MovingGuards extends Guards{
 	public boolean move(Player p, Room[][] tab){
 		change(tab);
 		return check(p,tab);
+	}
+	public int max(int val1, int val2, int val3, int val4){
+		if ((val1>val2)&&(val1>val3)&&(val1>val4)){return val1;}
+		else if ((val2>=val1)&&(val2>=val3)&&(val2>=val4)){return val2;}
+		else if ((val3>=val1)&&(val3>=val2)&&(val3>=val4)){return val3;}
+		else if ((val4>=val1)&&(val4>=val3)&&(val4>=val2)){return val4;}
+		return 0;
 	}
 	// Setters
 	public void corrupt(){bribed=true;}
