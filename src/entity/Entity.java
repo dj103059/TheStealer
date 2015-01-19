@@ -1,5 +1,6 @@
 package entity;
+import room.*;
 
-public class Entity {
-
+public abstract class Entity {
+	protected Room currentRoom;
 }
