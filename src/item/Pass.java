@@ -13,9 +13,4 @@ public class Pass extends Item {
 			this.setWeigth(weigth);
 		}
 		
-		public Pass(){
-			this.setDescription("A pass for all door");
-			this.setName("AllRoom");
-			this.setWeigth(weigth);
-		}
 }
