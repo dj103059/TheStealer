@@ -2,21 +2,22 @@ package entity;
 import room.*;
 
 public class Guards extends Entity{
-	protected boolean active;
-	protected boolean bribed;
+	protected boolean active;	// If he can see player and move
+	protected boolean bribed;	// If yes, he don't see player
+	
 	// Constructor
 	public Guards(Room currentRoom, boolean bribed, boolean active){
 		this.currentRoom=currentRoom;
 		this.bribed=bribed;
 		this.active=active;
 	}
-	// Méthods	
+	
+	// Methods	
 	/**
 	 *  The guard will check the adjacent Room
 	 * @return True if he can see the player
 	 */
 	public boolean check(Player p, Room[][] tab){
-		
 		if (active){
 			int x=currentRoom.getX();	// Abscissa
 			int y=currentRoom.getY();	// Ordered	

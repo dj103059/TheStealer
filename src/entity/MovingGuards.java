@@ -1,12 +1,13 @@
 package entity;
 import java.util.ArrayList;
-
 import room.*;
-public class MovingGuards extends Guards{
 
-	public MovingGuards(Room currentRoom, boolean bribed, boolean active) {
-		super(currentRoom, bribed, active);
-	}
+public class MovingGuards extends Guards{
+	
+	// Constructor
+	public MovingGuards(Room currentRoom, boolean bribed, boolean active) {super(currentRoom, bribed, active);}
+	
+	// Methods
 	/**
 	 * Generate a random move
 	 */
@@ -27,7 +28,7 @@ public class MovingGuards extends Guards{
 		currentRoom=next.get(ran);
 		}
 	/**
-	 * Allows passage from one room to another	
+	 * Allows passage from one room to another, and manages noise
 	 */
 	public void change(Room[][] tab){
 		int x=currentRoom.getX();	// Abscissa
@@ -63,6 +64,14 @@ public class MovingGuards extends Guards{
 		change(tab);
 		return check(p,tab);
 	}
+	/**
+	 * 
+	 * @param val1 first value
+	 * @param val2 second value
+	 * @param val3 third value
+	 * @param val4 fourth value
+	 * @return return the max value
+	 */
 	public int max(int val1, int val2, int val3, int val4){
 		if ((val1>=val2)&&(val1>=val3)&&(val1>=val4)){return val1;}
 		else if ((val2>=val1)&&(val2>=val3)&&(val2>=val4)){return val2;}
@@ -70,6 +79,7 @@ public class MovingGuards extends Guards{
 		else if ((val4>=val1)&&(val4>=val3)&&(val4>=val2)){return val4;}
 		return 0;
 	}
+	
 	// Setters
 	public void corrupt(){bribed=true;}
 }
