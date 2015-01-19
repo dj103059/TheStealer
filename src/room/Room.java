@@ -12,6 +12,8 @@ import java.util.Set;
  *
  */
 public class Room {
+	//name of the room
+	private String name;
 	//description of the room
 	private String description;
     private HashMap<String, Room> exits; // stores exits of this room.
@@ -41,8 +43,9 @@ public class Room {
      * @param description
      *            The room's description.
      */
-    public Room(String description) {
+    public Room(String description,String name) {
         this.description = description;
+        this.name = name;
         exits = new HashMap<>();
         listofitem = new ArrayList<Item>();
         listofentity = new ArrayList<Entity>();
@@ -176,6 +179,14 @@ public class Room {
 
 	public void setNoise(int noise) {
 		this.noise = noise;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
