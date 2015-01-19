@@ -16,7 +16,9 @@ public class Lure extends Item {
 		}
 		
 		@Override
-		public void use(){
+		public String use(){
+			
+			return "";
 			/* TODO  : during three turns , player's noise equal 0*/
 		}
 }

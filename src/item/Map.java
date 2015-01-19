@@ -17,6 +17,7 @@ public class Map extends Item {
 		
 	}
 	
+	
 	public void update(Room [][] allRoom){
 		
 		tabRoom=allRoom;
@@ -25,7 +26,7 @@ public class Map extends Item {
 	
 	@Override
 	public String use(){
-		String s;
+		String s="";
 		for (int i=0;i<tabRoom.length;i++)
 		{
 			for (int j=0;j<tabRoom[i].length;j++)

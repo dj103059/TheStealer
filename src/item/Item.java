@@ -39,7 +39,7 @@ public abstract class Item {
 	/**
 	 * Each item have a use
 	 */
-	public void use(){};
+	public String use(){return "";};
 	
 	@Override
 	public String toString(){
