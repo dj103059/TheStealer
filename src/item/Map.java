@@ -13,14 +13,24 @@ public class Map extends Item {
 		this.setDescription(" You can see the area.");
 		this.setName("Map");
 		this.setWeigth(weigth);
-		tabRoom=allRoom;
+		this.update(allRoom);
 		
 	}
 	
 	
+	public Room[][] getTabRoom() {
+		return tabRoom;
+	}
+
+
+	public void setTabRoom(Room[][] tabRoom) {
+		this.tabRoom = tabRoom;
+	}
+
+
 	public void update(Room [][] allRoom){
+		this.setTabRoom(allRoom);
 		
-		tabRoom=allRoom;
 		
 	}
 	
