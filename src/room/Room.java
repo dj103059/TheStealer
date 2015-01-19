@@ -7,29 +7,35 @@ import java.util.HashMap;
 import java.util.Set;
 
 import entity.Entity;
-
+/**
+ * a room 
+ *
+ */
 public class Room {
+	//description of the room
 	private String description;
     private HashMap<String, Room> exits; // stores exits of this room.
+    //list of item in the room
     private ArrayList<Item> listofitem;
+    //list of entity in the room (guard or player)
     private ArrayList<Entity> listofentity;
+    //position of the room in the map
+    private int x;
+    private int y;
     
     
+    /**
+     * if the room contains the entity en , return true
+     * @param en
+     * @return
+     */
     public boolean containsEntity(Entity en){
     	listofentity.contains(en);
     	return true;
     }
     
-    public ArrayList<Item> getListofitem() {
-		return listofitem;
-	}
-    
-    public ArrayList<Entity> getListofentity() {
-		return listofentity;
-	}
     /**
      * Create a room described "description". Initially, it has no exits.
-     * "description" is something like "a kitchen" or "an open court yard".
      * 
      * @param description
      *            The room's description.
@@ -41,6 +47,8 @@ public class Room {
         listofentity = new ArrayList<Entity>();
     }
     
+    /**remove and add in the list of item and list of entity
+     */
     public boolean removeItem(Item item){
     	return this.listofitem.remove(item);
     }
@@ -125,6 +133,34 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
+    
+    /*
+     * getter and setter
+     */
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+    public ArrayList<Item> getListofitem() {
+		return listofitem;
+	}
+    
+    public ArrayList<Entity> getListofentity() {
+		return listofentity;
+	}
 
 
 }
