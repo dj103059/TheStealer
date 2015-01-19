@@ -14,8 +14,9 @@ public class Box extends Item {
 	
 	@Override
 	public String use(){
-		
-		return "";
+		String s;
+		s = "you are hiden";
+		return s;
 		/* TODO  : during three turns , player's noise equal 0*/
 	}
 }
