@@ -25,7 +25,7 @@ public class Player extends Entity{
 	 * @param add	True if you add, false if you remove
 	 * @return		The new weight 
 	 */
-	private int calculateWeight(Item i, int gold, boolean add){
+	private int calculateWeight(Item i, int gold,  boolean add){
 		int signe=1;;
 		if (!add){signe=-1;}
 		int weight=gold*goldWeight;
@@ -55,10 +55,11 @@ public class Player extends Entity{
 	 * @param i		Item the player want to drop
 	 * @param gold	Amount of gold the player want to drop;
 	 */
-	public void drop(Item i, int gold){
-		for (Item j : inventory){if (j.equals(i)){inventory.remove(j);}}
+	public void drop(String name, int gold){
+		Item delete=null;
+		for (Item j : inventory){if (j.getName().equals(name)){inventory.remove(j);delete=j;break;}}
 		this.gold-=gold;
-		weight=calculateWeight(i,gold,false);
+		weight=calculateWeight(delete,gold, false);
 	}
 	
 	// Getters

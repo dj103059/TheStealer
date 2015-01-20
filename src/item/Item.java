@@ -45,4 +45,10 @@ public abstract class Item {
 	public String toString(){
 		return "Name of item : " + this.name+ "/n description of this item : "+this.description+"/n";
 	}
+	@Override
+	public boolean equals(Object obj){
+		Item tmp=(Item)obj;
+		if (this.getName().equals(tmp.getName())){return true;}
+		return false;
+	}
 }
