@@ -24,7 +24,7 @@ public class Player extends Entity{
 	private int maxWeight;
 	
 	// Constructor
-	public Player(int maxWeight){this.maxWeight=maxWeight;}
+	public Player(int maxWeight, String name){this.maxWeight=maxWeight;this.name=name;}
 	
 	// Methods
 	/**

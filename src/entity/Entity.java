@@ -8,6 +8,8 @@ import room.*;
 public abstract class Entity {
 	// Where the entity currently is
 	protected Room currentRoom;	
+	// Name of the entity
+	protected String name;
 	
 	// Methods
 	/**
@@ -34,4 +36,7 @@ public abstract class Entity {
 		}
 		return false;
 	}
+	// toString Override
+	@Override
+	public String toString(){return this.name;}
 }

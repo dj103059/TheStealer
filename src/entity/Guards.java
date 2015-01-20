@@ -12,10 +12,11 @@ public class Guards extends Entity{
 	protected boolean bribed;
 	
 	// Constructor
-	public Guards(Room currentRoom, boolean bribed, boolean active){
+	public Guards(Room currentRoom, boolean bribed, boolean active, String name){
 		this.currentRoom=currentRoom;
 		this.bribed=bribed;
 		this.active=active;
+		this.name=name;
 	}
 	
 	// Methods	
