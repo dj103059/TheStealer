@@ -27,14 +27,6 @@ public class Room {
     private int noise = 0;
     
     
-   /**
-    * Create a room witch is a wall.
-    */
-    
-    public Room()
-    {
-    	this("This room is a Wall","Wall");
-    }
     
     /**
      * if the room contains the entity en , return true
@@ -241,6 +233,34 @@ public class Room {
 		if(this.getName().equals("Wall"))
 		{return false;}
 		return true;
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if (this==obj){return true;}
+		else if (obj instanceof Room){
+			Room tmp=(Room) obj;
+			if (this.getListofitem().equals(tmp.getListofitem())){
+				if (this.getName().equals(tmp.getName())){
+					if (this.getShortDescription().equals(tmp.getShortDescription())){
+						if(this.getListofentity().equals(tmp.getListofentity())){
+							if(this.getExitString().equals(tmp.getExitString())){
+								if(this.getX()==(tmp.getX())){
+									if(this.getY()==(tmp.getY())){
+										if(this.getNoise()==(tmp.getNoise())){
+											return true;
+										}
+										
+									}
+									
+								}
+								}
+							}
+						}
+				}
+			}
+		}
+		return false;
 	}
 	
 	public Item getItem(String name)
