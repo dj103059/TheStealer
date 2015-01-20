@@ -2,7 +2,6 @@ package entity;
 import item.*;
 import room.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 /**
  * This class defines the Player
