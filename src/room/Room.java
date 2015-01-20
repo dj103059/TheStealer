@@ -206,4 +206,10 @@ public class Room {
 	{
 		return true;
 	}
+	
+	public Item getItem(String name)
+	{
+		return listofitem.get(name);
+	
+	}
 }
