@@ -18,7 +18,7 @@ public class Room {
 	private String description;
     private HashMap<String, Room> exits; // stores exits of this room.
     //list of item in the room
-    private ArrayList<Item> listofitem;
+    private HashMap<String,Item> listofitem;
     //list of entity in the room (guard or player)
     private ArrayList<Entity> listofentity;
     //position of the room in the map
@@ -47,14 +47,17 @@ public class Room {
         this.description = description;
         this.name = name;
         exits = new HashMap<>();
-        listofitem = new ArrayList<Item>();
+        listofitem = new HashMap<String,Item>();
         listofentity = new ArrayList<Entity>();
     }
     
     /**remove and add in the list of item and list of entity
      */
     public boolean removeItem(Item item){
-    	return this.listofitem.remove(item);
+    	if(this.listofitem.remove(""+item) != null){
+    		return true;
+    	}
+    	return false;
     }
     
     public boolean removeEntity(Entity entity){
@@ -62,7 +65,12 @@ public class Room {
     }
     
     public void addItem(Item item){
-    	this.listofitem.add(item);
+    	if(this.listofitem.put(""+item,item) != null){
+    		System.out.println("succes");
+    	}else{
+    			System.out.println("fail");
+    		}
+    			
     }
     
     public void addEntity(Entity entity){
@@ -158,7 +166,7 @@ public class Room {
 		this.y = y;
 	}
 	
-    public ArrayList<Item> getListofitem() {
+    public HashMap<String,Item> getListofitem() {
 		return listofitem;
 	}
     
