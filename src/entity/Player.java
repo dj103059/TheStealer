@@ -37,10 +37,10 @@ public class Player extends Entity{
 	private int calculateWeight(Item i, int gold,  boolean add){
 		int signe=1;;
 		if (!add){signe=-1;}
-		int weight=gold*goldWeight;
-		if (i!=null){weight+=signe*i.getWeight();}
-		if (gold !=0){weight+=signe*gold*goldWeight;}
-		return weight;
+		int weightTmp=weight;
+		if (i!=null){weightTmp+=signe*i.getWeight();}
+		if (gold !=0){weightTmp+=signe*gold*goldWeight;}
+		return weightTmp;
 	}
 	/**
 	 * 
