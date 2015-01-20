@@ -6,7 +6,7 @@ package command;
  */
 public enum CommandWord {
 
-    GO("go",new Go()),UNKNOWN("?",null);
+    GO("go",new Go()),UNKNOWN("?",new Unknown());
     
     // The command string.
     private String commandString;
@@ -24,9 +24,6 @@ public enum CommandWord {
         this.commandWord = command;
     }
 
-    /**
-     * Get the Command from an element of the enum
-     */
     public Command getCommand(){
         return commandWord;
     }

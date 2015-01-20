@@ -16,11 +16,10 @@ public class CommandWords
     /**
      * initialize the map.
      */
-    public CommandWords()
-    {
+    public CommandWords(){
         correctCommands = new HashMap<String, CommandWord>();
         for(CommandWord command : CommandWord.values()) {
-            if(command != CommandWord.UNKNOWN) {
+            if(command != CommandWord.UNKNOWN){
                 correctCommands.put(command.toString(), command);
             }
         }
@@ -32,8 +31,7 @@ public class CommandWords
      *          The word to look up.
      * @return The CommandWord corresponding, UNKNOWN if it doesn't exist
      */
-    public CommandWord getCommandWord(String commandWord)
-    {
+    public CommandWord getCommandWord(String commandWord){
         CommandWord command = correctCommands.get(commandWord);
         if(command != null) {
             return command;
@@ -62,6 +60,6 @@ public class CommandWords
         for(String command : correctCommands.keySet()) {
             cmd+=command + "  ";
         }
-        return cmd+"\n";
+        return cmd;
     }
 }
