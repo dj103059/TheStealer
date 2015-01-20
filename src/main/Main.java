@@ -1,12 +1,11 @@
 package main;
 
-import command.Command;
-import command.CommandLine;
-import command.End;
-import command.Parser;
-
-import entity.Player;
+import command.*;
+import entity.*;
 import room.Room;
+import timer.Timer;
+import item.*;
+import item.Map;
 
 public class Main {
     //the map
@@ -14,6 +13,7 @@ public class Main {
     
     //the player
     private Player hero;
+    private MovingGuards movingguard;
     //the current coordinate of the character : table with x and y
     private int[] coordinate;
     //the current room where the character is
@@ -30,19 +30,30 @@ public class Main {
      * @param width
      */
     public Main(int length, int width){
+    	Timer time = new Timer(300);
         //initialize the parser
         parser=new Parser();
         //the map has the same size that the user want
         bankMap=new Room[length][width];
+        Map map = new Map(bankMap);
+        Clock clock = new Clock(time);
+        
         
         coordinate=new int[2];
         //the hero has a weight limit of 100
-        hero = new Player(100);
         iniMap();
         //he begins in (0,0)
         currentRoom=bankMap[0][0];
         coordinate[0]=0;
         coordinate[1]=0;
+        hero = new Player(currentRoom,100,"hero");
+        bankMap[0][0].addEntity(hero);
+        movingguard = new MovingGuards(bankMap[3][3],false,true,"Guard");
+        bankMap[3][3].addEntity(movingguard);
+        hero.add2(map, 0);
+        hero.add2(clock, 0);
+        
+        
     }
     
     /**
@@ -89,6 +100,7 @@ public class Main {
         while(!finished){
             CommandLine cmd=parser.getCommand();
             finished=processCommand(cmd);
+            movingguard.move(hero, bankMap);
             endTurn();
         }
     }

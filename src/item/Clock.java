@@ -9,10 +9,11 @@ public class Clock extends Item{
 
 
 		//constructor
-		public Clock (){
+		public Clock (Timer time){
 			this.setDescription(" you can see the time remaining");
 			this.setName("wristwatch");
 			this.setWeight(weigth);
+			this.time = time;
 		}
 		
 		@Override
