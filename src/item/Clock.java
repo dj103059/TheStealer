@@ -27,10 +27,12 @@ public class Clock extends Item{
 			this.time = time;
 		}
 		
-		public void update(int n){
+		public String update(int n){
 			this.time.setTimer(this.time.getTimer()-n);
-			if(n == 0){
+			if(n <=0){
+				return "Game over, elapsed time";
 				//TODO
 			}
+			else return "";
 		}
 }
