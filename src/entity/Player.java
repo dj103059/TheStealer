@@ -3,6 +3,7 @@ import item.*;
 import room.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * This class defines the Player
  * @author user
@@ -14,7 +15,7 @@ public class Player extends Entity{
 	// If the player is hidden
 	private boolean hidden=false;
 	// Inventory of the player
-	private ArrayList<Item> inventory= new ArrayList<Item>();
+	private HashMap<String, Item> inventory=new HashMap<String, Item>();
 	// His current gold
 	private int gold=0;
 	// Weight of the gold weight
@@ -49,31 +50,18 @@ public class Player extends Entity{
 	 * @param gold	Amount of gold you want to add to the player
 	 * @return		False if he can't carry this weight
 	 */
-	public boolean add1(Item i, int gold){
+	public boolean add(Item i, int gold){
 		if (!act){return false;}
 		int tmp=calculateWeight(i, gold, true);
 		if (tmp<=maxWeight){
-			if (i!=null){
-				inventory.add(i);
-			}
+			if (i!=null){inventory.put(i+"",i);}
 			this.gold+=gold;
 			weight=tmp;
 			return true;
 		}else{return false;}
 	}
 	
-	public void add2(Item i, int gold){
-		if (!act){return ;}
-		int tmp=calculateWeight(i, gold, true);
-		if (tmp<=maxWeight){
-			if (i!=null){
-				this.inventory.add(i);
-				return;
-			}
-			this.gold+=gold;
-			weight=tmp;
-		}else{return ;}
-	}
+	public void init(Item i){inventory.put(i+"",i);}
 	/**
 	 * 
 	 * @param i		Item the player want to drop
@@ -82,10 +70,11 @@ public class Player extends Entity{
 	 */
 	public boolean drop(String name, int gold){
 		if (!act){return false;}
-		Item delete=null;
-		for (Item j : inventory){if (j.getName().equals(name)){inventory.remove(j);delete=j;break;}}
+		Item delete=inventory.get(name);
+		if (delete==null){return false;}
 		this.gold-=gold;
 		weight=calculateWeight(delete,gold, false);
+		inventory.remove(name);
 		return true;
 	}
 	
@@ -93,7 +82,8 @@ public class Player extends Entity{
 	public boolean isHidden(){return hidden;}
 	public int getWeight(){return weight;}
 	public int getMaxWeight(){return maxWeight;}
-	public ArrayList<Item> getInventory(){return inventory;}
+	public HashMap<String, Item> getInventory(){return inventory;}
+	public Item getIntem(){return inventory.get(name);}
 	
 	// Setters
 	public void hide(){hidden=true;}
