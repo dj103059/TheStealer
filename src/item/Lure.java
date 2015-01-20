@@ -7,12 +7,12 @@ package item;
  */
 public class Lure extends Item {
 	// constant for the weigth of the lure
-		private static final int weigth = 5 ;
+		private static final int WEIGTH = 5 ;
 		//constructor
 		public Lure (){
 			this.setDescription(" use it for make distraction!");
 			this.setName("Lure");
-			this.setWeigth(weigth);
+			this.setWeigth(WEIGTH);
 		}
 		
 		@Override

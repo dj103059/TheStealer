@@ -4,12 +4,12 @@ package item;
  **/
 public class Box extends Item {
 	// constant for the weigth of the box
-	private static final int weigth = 500 ;
+	private static final int WEIGTH = 500 ;
 	//constructor
 	public Box (){
 		this.setDescription(" you can hide you inside...");
 		this.setName("Box");
-		this.setWeigth(weigth);
+		this.setWeigth(WEIGTH);
 	}
 	
 	@Override
