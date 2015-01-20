@@ -1,10 +1,7 @@
 package enumate;
 
 public enum EnumDirection {
-	SOUTH("south"),
-	NORTH("north"),
-	EAST("east"),
-	WEST("west");
+	SOUTH("south"), NORTH("north"), EAST("east"), WEST("west"), UNKNOWN("?");
 	private String direction;
 	
 	EnumDirection(String name){

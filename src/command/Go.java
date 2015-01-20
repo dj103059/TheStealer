@@ -1,5 +1,9 @@
 package command;
 
+import java.util.HashMap;
+
+import enumate.EnumDirection;
+
 import room.Room;
 import main.Main;
 
@@ -18,35 +22,37 @@ public class Go extends Command{
         Room[][] map = main.getBankMap();
         coordinate[0] = main.getCoordinateX();
         coordinate[1] = main.getCoordinateY();
+        //the useful rooms
+        Room currentRoom = main.getCurrentRoom(); 
         Room nextRoom;
+        //check if you can move
+        boolean canMove=false;
+        //find the direction you want :
+        EnumDirection direct = getEnumDirection(secondWord);
         //catch the next coordinate if the coordinates are correct
-        switch(secondWord){
-        case "west":
+        switch(direct){
+        case WEST:
             if(coordinate[0]-1>=0){
                 coordinate[0]=coordinate[0]-1;
-            }else{
-                return "You can't go west";
+                canMove=true;
             }
             break;
-        case "east":
+        case EAST:
             if(coordinate[0]+1<map[0].length){
                 coordinate[0]=coordinate[0]+1;
-            }else{
-                return "You can't go east";
+                canMove=true;
             }
             break;
-        case "north":
+        case NORTH:
             if(coordinate[1]-1>=0){
                 coordinate[1]=coordinate[1]-1;
-            }else{
-                return "You can't go north";
+                canMove=true;
             }
             break;
-        case "south":
+        case SOUTH:
             if(coordinate[1]+1<map[1].length){
                 coordinate[1]=coordinate[1]+1;
-            }else{
-                return "You can't go south.";
+                canMove=true;
             }
             break;
         default:
@@ -55,10 +61,33 @@ public class Go extends Command{
         //catch the next room
         nextRoom=map[coordinate[0]][coordinate[1]];
         //if the next room isn't null and if you can enter, does the movement
-        if(nextRoom!=null && nextRoom.canEnter(main.getHero().getInventory())){
+        if(canMove && nextRoom!=null && nextRoom.canEnter(main.getHero().getInventory())){
             main.setCoordinate(coordinate);
+            nextRoom.addEntity(main.getHero());
+            currentRoom.removeEntity(main.getHero());
             return "You go "+secondWord;
         }
         return "You can't go "+secondWord;
+    }
+    
+    /**
+     * Return the EnumDirection object associated to the String in parameter
+     * @param direct
+     *              the String which is a direction
+     * @return the EnumDirection associated to the String, UNKNOWN otherwise
+     */
+    private EnumDirection getEnumDirection(String direct){
+        HashMap<String, EnumDirection>correctDirect = new HashMap<String, EnumDirection>();
+        for(EnumDirection direction : EnumDirection.values()) {
+            if(direction != EnumDirection.UNKNOWN){
+                correctDirect.put(direction.toString(), direction);
+            }
+        }
+        EnumDirection direction = correctDirect.get(direct);
+        if(direction != null){
+            return direction;
+        }else{
+            return EnumDirection.UNKNOWN;
+        }
     }
 }
