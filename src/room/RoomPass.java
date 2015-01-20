@@ -1,6 +1,9 @@
 package room;
 
-import item.Pass;
+import java.util.ArrayList;
+
+
+import item.*;
 /*
  * room who need a pass to enter
  */
@@ -43,4 +46,10 @@ public class RoomPass extends Room {
 		this.pass2 = pass2;
 	}
 	
+	public boolean canEnter(ArrayList<Item> inventory)
+	{
+		if (inventory.contains(this.getPass1()))
+				{return true;}
+		return false;
+	}
 }

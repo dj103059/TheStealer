@@ -1,6 +1,5 @@
 package room;
 
-import item.Pass;
 
 /**
  * the treasure room

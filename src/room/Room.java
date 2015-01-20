@@ -193,4 +193,9 @@ public class Room {
 		this.description=description;
 	
 	}
+	
+	public boolean canEnter(ArrayList<Item> inventory)
+	{
+		return true;
+	}
 }
