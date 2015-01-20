@@ -2,22 +2,28 @@ package room;
 
 import item.Pass;
 
+/**
+ * the treasure room
+ *
+ */
 public class RoomGold extends RoomPass{
+	//the amont of gold
 	private int gold;
 
+	//constructor
 	public RoomGold(String description, String name) {
 		super(description, name);
-		this.setPass1(new Pass("Gold Room"));
 		this.setGold(0);
 	}
 	
+	//the constructor with the amont of gold in the room
 	public RoomGold(String description, String name, int g)
 	{
 		super(description, name);
-		this.setPass1(new Pass("Gold Room"));
 		this.setGold(g);
 	}
 	
+	//getter and setter
 	public void setGold(int g)
 	{
 		this.gold=g;

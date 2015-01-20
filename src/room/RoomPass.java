@@ -1,17 +1,32 @@
 package room;
 
 import item.Pass;
+/*
+ * room who need a pass to enter
+ */
 
 public class RoomPass extends Room {
+	//pass 1 particular for the room
 	private Pass pass1;
+	// pass all room
 	private Pass pass2;
 
+	//constructor
 	public RoomPass(String description, String name) {
 		super(description, name);
 		this.pass1 = new Pass(name);
 		this.pass2 = new Pass("ALLROOM");
 	}
+	
+	//constructor with the room who you drop the key
+	public RoomPass(String description, String name,Room room) {
+		super(description, name);
+		this.pass1 = new Pass(name);
+		this.pass2 = new Pass("ALLROOM");
+		room.addItem(this.pass1);
+	}
 
+	//getter an setter
 	public Pass getPass1() {
 		return pass1;
 	}
