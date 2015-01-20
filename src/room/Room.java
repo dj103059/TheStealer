@@ -27,16 +27,20 @@ public class Room {
     private int noise = 0;
     
     
-    /**
-     * if the room contains the entity en , return true
-     * @param en
-     * @return
-     */
+   /**
+    * Create a room witch is a wall.
+    */
     
     public Room()
     {
     	this("This room is a Wall","Wall");
     }
+    
+    /**
+     * if the room contains the entity en , return true
+     * @param en
+     * @return
+     */
     public boolean containsEntity(Entity en){
     	return listofentity.contains(en);
     	
@@ -65,10 +69,22 @@ public class Room {
     	return false;
     }
     
+    /**
+     * Remove the entity in parameter of the listofentity
+     * 
+     * @param entity
+     * @return
+     */
+    
     public boolean removeEntity(Entity entity){
     	return this.listofentity.remove(entity);
     }
     
+    /**
+     * 
+     * Add to the listofitem of the item in parameter
+     * @param item
+     */
     public void addItem(Item item){
     	if(this.listofitem.put(""+item,item) != null){
     		System.out.println("succes");
@@ -78,6 +94,10 @@ public class Room {
     			
     }
     
+    /**
+     * Add the entity to the listofentity of the room
+     * @param entity
+     */
     public void addEntity(Entity entity){
     	this.listofentity.add(entity);
     }
