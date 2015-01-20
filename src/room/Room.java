@@ -202,7 +202,7 @@ public class Room {
 	
 	}
 	
-	public boolean canEnter(ArrayList<Item> inventory)
+	public boolean canEnter(HashMap<String, Item> inventory)
 	{
 		return true;
 	}

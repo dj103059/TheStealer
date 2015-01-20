@@ -3,6 +3,8 @@ package room;
 import java.util.ArrayList;
 
 
+import java.util.HashMap;
+
 import item.*;
 /*
  * room who need a pass to enter
@@ -46,10 +48,12 @@ public class RoomPass extends Room {
 		this.pass2 = pass2;
 	}
 	
-	public boolean canEnter(ArrayList<Item> inventory)
+	public boolean canEnter(HashMap<String, Item> inventory)
 	{
-		if (inventory.contains(this.getPass1()))
-				{return true;}
+		if (inventory.containsValue(this.getPass1()))
+				{
+					return true;
+				}
 		return false;
 	}
 }
