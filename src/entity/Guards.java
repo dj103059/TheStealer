@@ -15,7 +15,7 @@ public class Guards extends Entity{
 	public Guards(Room currentRoom, boolean bribed, boolean active, String name){
 		this.currentRoom=currentRoom;
 		this.bribed=bribed;
-		this.active=active;
+		this.active=active;	
 		this.name=name;
 	}
 	
@@ -43,7 +43,7 @@ public class Guards extends Entity{
 	 * @param tab	The map
 	 * @return		True if he sees the player
 	 */
-	public boolean move(Player p, Room[][]tab){return check(p,tab);}
+	public boolean act(Player p, Room[][]tab){return check(p,tab);}
 
 	
 	// Setters
