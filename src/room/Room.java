@@ -46,6 +46,11 @@ public class Room {
     	
     }
     
+    public boolean containsItem(Item en){
+    	return listofitem.containsValue(en);
+    	
+    }
+    
     /**
      * Create a room described "description". Initially, it has no exits.
      * 
