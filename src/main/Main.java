@@ -1,5 +1,6 @@
 package main;
 
+import parser.Parser;
 import command.*;
 import entity.*;
 import room.Room;
@@ -48,7 +49,7 @@ public class Main {
         coordinate[1]=1;
         hero = new Player(currentRoom,100,"hero");
         bankMap[1][1].addEntity(hero);
-        movingguard = new MovingGuards(bankMap[3][3],false,true,"Guard",3,3);
+        movingguard = new MovingGuards(bankMap[3][3],false,true,"Guard");
         bankMap[3][3].addEntity(movingguard);
         hero.init(map);
         hero.init(clock);
@@ -100,7 +101,7 @@ public class Main {
         while(!finished){
             CommandLine cmd=parser.getCommand();
             finished=processCommand(cmd);
-            movingguard.change(bankMap);
+            movingguard.act(hero,bankMap);
             endTurn();
         }
     }
