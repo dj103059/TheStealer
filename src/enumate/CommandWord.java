@@ -8,7 +8,9 @@ import command.*;
  */
 public enum CommandWord {
 
-    GO("go",new Go()),USE("use", new Use()),UNKNOWN("?",new Unknown());
+    GO("go",new Go()),USE("use", new Use()),HIDE("hide",new Hide()),
+    TAKE("take",new Take()),DROP("drop",new Drop()),END("end",new End()),
+    UNKNOWN("?",new Unknown());
     
     // The command string.
     private String commandString;
