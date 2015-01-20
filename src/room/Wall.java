@@ -12,7 +12,7 @@ public class Wall extends Room{
 	public boolean equals(Object obj){
 		if (this==obj){return true;}
 		else if (obj instanceof Wall){
-			Wall tmp=(Wall) obj;
+			return true;
 			
 		}
 		return false;
