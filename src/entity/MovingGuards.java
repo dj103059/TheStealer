@@ -43,16 +43,20 @@ public class MovingGuards extends Guards{
 		int noiseWest=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
 		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if (max==noiseNorth){
-			currentRoom=tab[x][y+1];
+			if(tab[x][y+1]!=null){currentRoom=tab[x][y+1];}
+			else{randomMove(tab);}
 		}
 		else if (max==noiseSouth){
-			currentRoom=tab[x][y-1];
+			if(tab[x][y-1]!=null){currentRoom=tab[x][y-1];}
+			else{randomMove(tab);}
 		}
 		else if (max==noiseEast){
-			currentRoom=tab[x-1][y];
+			if(tab[x-1][y]!=null){currentRoom=tab[x-1][y];}
+			else{randomMove(tab);}
 		}
 		else if (max==noiseWest){
-			currentRoom=tab[x+1][y];
+			if(tab[x+1][y]!=null){currentRoom=tab[x+1][y];}
+			else{randomMove(tab);}
 		}
 		else if (max==0){
 			randomMove(tab);
