@@ -1,9 +1,15 @@
 package entity;
 import room.*;
-
+/**
+ * Defines the guard
+ * @author user
+ *
+ */
 public class Guards extends Entity{
-	protected boolean active;	// If he can see player and move
-	protected boolean bribed;	// If yes, he don't see player
+	// If he's active
+	protected boolean active;	
+	// If the player have bribed him, if yes, he don't see him
+	protected boolean bribed;
 	
 	// Constructor
 	public Guards(Room currentRoom, boolean bribed, boolean active){
@@ -14,7 +20,7 @@ public class Guards extends Entity{
 	
 	// Methods	
 	/**
-	 *  The guard will check the adjacent Room
+	 * The guard will check the adjacent Rooms
 	 * @return True if he can see the player
 	 */
 	public boolean check(Player p, Room[][] tab){
@@ -30,8 +36,19 @@ public class Guards extends Entity{
 		}
 		return false;
 	}
+	/**
+	 * Only check if he sees the player
+	 * @param p		The player
+	 * @param tab	The map
+	 * @return		True if he sees the player
+	 */
+	public boolean move(Player p, Room[][]tab){return check(p,tab);}
+
+	
+	// Setters
+	public void switche(){active=!active;}
+	
+	// Type override
 	@Override
 	public int getType(){return 2;}
-	public void switche(){active=!active;}
-	public boolean move(Player p, Room[][]tab){return check(p,tab);}
 }

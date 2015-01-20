@@ -1,7 +1,11 @@
 package entity;
 import java.util.ArrayList;
 import room.*;
-
+/**
+ * Defines the moving guards
+ * @author user
+ *
+ */
 public class MovingGuards extends Guards{
 	
 	// Constructor
