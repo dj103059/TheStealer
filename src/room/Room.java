@@ -32,6 +32,11 @@ public class Room {
      * @param en
      * @return
      */
+    
+    public Room()
+    {
+    	this("This room is a Wall","Wall");
+    }
     public boolean containsEntity(Entity en){
     	return listofentity.contains(en);
     	
