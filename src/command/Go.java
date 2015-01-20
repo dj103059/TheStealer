@@ -1,5 +1,5 @@
 package command;
 
-public class Move {
+public class Go {
 
 }
