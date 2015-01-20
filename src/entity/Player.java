@@ -83,7 +83,7 @@ public class Player extends Entity{
 	public int getWeight(){return weight;}
 	public int getMaxWeight(){return maxWeight;}
 	public HashMap<String, Item> getInventory(){return inventory;}
-	public Item getItem(String itemName){return inventory.get(itemName);}
+	public Item getItem(String name){return inventory.get(name);}
 	
 	// Setters
 	public void hide(){hidden=true;}

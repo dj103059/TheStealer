@@ -1,6 +1,6 @@
 package room;
 
-
+import java.util.ArrayList;
 
 
 import java.util.HashMap;
@@ -50,10 +50,6 @@ public class RoomPass extends Room {
 	
 	public boolean canEnter(HashMap<String, Item> inventory)
 	{
-		
-		if(this.getName().equals("Wall"))
-		{return false;}
-		
 		if (inventory.containsValue(this.getPass1()))
 				{
 					return true;
