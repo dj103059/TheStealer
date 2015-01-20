@@ -12,7 +12,7 @@ public class Lure extends Item {
 		public Lure (){
 			this.setDescription(" use it for make distraction!");
 			this.setName("Lure");
-			this.setWeigth(WEIGTH);
+			this.setWeight(WEIGTH);
 		}
 		
 		@Override

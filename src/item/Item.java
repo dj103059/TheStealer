@@ -5,8 +5,8 @@ package item;
 public abstract class Item {
 	//Name of item
 	private String name; 
-	//weigth of the object
-	private int weigth;
+	//weight of the object
+	private int weight;
 	//Description 
 	private String description; 
 	
@@ -28,12 +28,12 @@ public abstract class Item {
 		this.description = description;
 	}
 
-	public int getWeigth() {
-		return weigth;
+	public int getWeight() {
+		return weight;
 	}
 
-	public void setWeigth(int weigth) {
-		this.weigth = weigth;
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 	/**

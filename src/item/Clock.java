@@ -12,7 +12,7 @@ public class Clock extends Item{
 		public Clock (){
 			this.setDescription(" you can see the time remaining");
 			this.setName("wristwatch");
-			this.setWeigth(weigth);
+			this.setWeight(weigth);
 		}
 		
 		@Override

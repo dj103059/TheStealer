@@ -15,7 +15,7 @@ public class Map extends Item {
 	public Map (Room [][] allRoom){
 		this.setDescription("You can see the position of the various entities in the area.");
 		this.setName("Map");
-		this.setWeigth(WEIGTH);
+		this.setWeight(WEIGTH);
 		this.setTabRoom(allRoom);
 		
 	}

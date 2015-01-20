@@ -9,7 +9,7 @@ public class Box extends Item {
 	public Box (){
 		this.setDescription(" you can hide you inside...");
 		this.setName("Box");
-		this.setWeigth(WEIGTH);
+		this.setWeight(WEIGTH);
 	}
 	
 	@Override
