@@ -21,5 +21,16 @@ public class Timer {
 
 	public void setTimer(int timer) {
 		this.timer = timer;
+	
+	}
+	
+	public boolean decrementTime(int n)
+	{
+		if (timer-n>0)
+		{
+			timer=timer-n;
+			return true;
+		}
+		else return false;
 	}
 }
