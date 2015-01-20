@@ -41,10 +41,15 @@ public class Map extends Item {
 		{
 			for (int j=0;j<tabRoom[i].length;j++)
 			{
-				for (int k=0;k<tabRoom[i][j].getListofentity().size();k++)
-				{
-					s="The entity "+tabRoom[i][j].getListofentity().get(k)+" is in the room ( "+i+", "+j+")"+"\n"+s;
+				if(tabRoom[i][j]!=null){
+					
+				
+					for (int k=0;k<tabRoom[i][j].getListofentity().size();k++)
+					{
+						s="The entity "+tabRoom[i][j].getListofentity().get(k)+" is in the room ( "+i+", "+j+")"+"\n"+s;
+					}
 				}
+				
 			}
 		}
 

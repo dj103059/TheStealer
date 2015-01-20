@@ -33,8 +33,8 @@ public class Room {
      * @return
      */
     public boolean containsEntity(Entity en){
-    	listofentity.contains(en);
-    	return true;
+    	return listofentity.contains(en);
+    	
     }
     
     /**
