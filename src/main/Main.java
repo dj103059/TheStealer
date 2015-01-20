@@ -43,15 +43,15 @@ public class Main {
         //the hero has a weight limit of 100
         iniMap();
         //he begins in (0,0)
-        currentRoom=bankMap[1][1];
-        coordinate[0]=1;
-        coordinate[1]=1;
+        currentRoom=bankMap[0][0];
+        coordinate[0]=0;
+        coordinate[1]=0;
         hero = new Player(currentRoom,100,"hero");
-        bankMap[1][1].addEntity(hero);
-        movingguard = new MovingGuards(bankMap[3][3],false,true,"Guard",3,3);
+        bankMap[0][0].addEntity(hero);
+        movingguard = new MovingGuards(bankMap[3][3],false,true,"Guard");
         bankMap[3][3].addEntity(movingguard);
-        hero.init(map);
-        hero.init(clock);
+        hero.add2(map, 0);
+        hero.add2(clock, 0);
         
         
     }
@@ -61,27 +61,27 @@ public class Main {
      * It adds rooms to each box of the table
      */
     private void iniMap(){
-        for(int i=1;i<bankMap.length-1;i++){
-            for(int j=1;j<bankMap[0].length-1;j++){
+        for(int i=0;i<bankMap.length;i++){
+            for(int j=0;j<bankMap[0].length;j++){
                 bankMap[i][j]=new Room("room"+i+"-"+j,"best room ever");
             }
         }
         //add the left room
-        for(int i=2;i<bankMap.length-1;i++){
-            for(int j=1;j<bankMap[0].length-1;j++){
+        for(int i=1;i<bankMap.length;i++){
+            for(int j=0;j<bankMap[0].length;j++){
                 bankMap[i][j].setExit("left", bankMap[i-1][j]);
             }
         }
-        for(int i=1;i<bankMap.length-2;i++){
-            for(int j=1;j<bankMap[0].length-1;j++){
+        for(int i=0;i<bankMap.length-1;i++){
+            for(int j=0;j<bankMap[0].length;j++){
                 bankMap[i][j].setExit("right", bankMap[i+1][j]);
             }
         }
-        for(int i=1;i<bankMap.length-1;i++){
-            for(int j=2;j<bankMap[0].length-1;j++){
+        for(int i=0;i<bankMap.length;i++){
+            for(int j=1;j<bankMap[0].length;j++){
                 bankMap[i][j].setExit("north",bankMap[i][j-1]);
             }
-            for(int j=1;j<bankMap[0].length-2;j++){
+            for(int j=0;j<bankMap[0].length-1;j++){
                 bankMap[i][j].setExit("south", bankMap[i][j+1]);
             }
         }
@@ -100,7 +100,7 @@ public class Main {
         while(!finished){
             CommandLine cmd=parser.getCommand();
             finished=processCommand(cmd);
-            movingguard.change(bankMap);
+            movingguard.move(hero, bankMap);
             endTurn();
         }
     }
