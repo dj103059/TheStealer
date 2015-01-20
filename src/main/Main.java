@@ -4,6 +4,7 @@ import parser.Parser;
 import command.*;
 import entity.*;
 import room.Room;
+import room.Wall;
 import timer.Timer;
 import item.*;
 import item.Map;
@@ -62,9 +63,19 @@ public class Main {
      * It adds rooms to each box of the table
      */
     private void iniMap(){
-        for(int i=1;i<bankMap.length-1;i++){
+    	for(int i=0;i<bankMap.length;i++){
+            for(int j=0;j<bankMap[0].length;j++){
+                bankMap[i][j]=new Wall();
+                bankMap[i][j].setX(i);
+                bankMap[i][j].setY(j);
+            }
+        }
+    	
+    	for(int i=1;i<bankMap.length-1;i++){
             for(int j=1;j<bankMap[0].length-1;j++){
                 bankMap[i][j]=new Room("room"+i+"-"+j,"best room ever");
+                bankMap[i][j].setX(i);
+                bankMap[i][j].setY(j);
             }
         }
         //add the left room
@@ -101,9 +112,12 @@ public class Main {
         while(!finished){
             CommandLine cmd=parser.getCommand();
             finished=processCommand(cmd);
-            movingguard.act(hero,bankMap);
+            if(movingguard.act(hero,bankMap)){
+            	break;
+            };
             endTurn();
         }
+        System.out.println("tu es vu, game over ");
     }
     
     /**

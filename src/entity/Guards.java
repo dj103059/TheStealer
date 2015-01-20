@@ -28,6 +28,7 @@ public class Guards extends Entity{
 		if (active){
 			int x=currentRoom.getX();	// Abscissa
 			int y=currentRoom.getY();	// Ordered	
+			System.out.println("x : "+ x+"y : "+y);
 			boolean north=tab[x][y+1].isPlayer();
 			boolean south=tab[x][y-1].isPlayer();
 			boolean east=tab[x-1][y].isPlayer();

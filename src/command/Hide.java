@@ -13,7 +13,7 @@ public class Hide extends Command{
     @Override
     public String act(String secondWord, Main main) {
         Player hero = main.getHero();
-        if(hero.getCurrentRoom().equals(new Wall())){
+        if(hero.getCurrentRoom().equals(new Box())){
             hero.hide();
             return "You are hiding under a box.";
         }

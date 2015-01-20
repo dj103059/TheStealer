@@ -17,4 +17,9 @@ public class Wall extends Room{
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean isPlayer(){
+		return false;
+	}
 }

@@ -1,5 +1,6 @@
 package entity;
 import java.util.ArrayList;
+import java.util.Random;
 
 import room.*;
 /**
@@ -21,15 +22,15 @@ public class MovingGuards extends Guards{
 		ArrayList<Room> next=new ArrayList<Room>();
 		Room tmp;
 		tmp=tab[x+1][y];
-		if  (tmp.equals(new Wall())){next.add(tmp);}
+		if  (!tmp.equals(new Wall())){next.add(tmp);}
 		tmp=tab[x-1][y];
-		if  (tmp.equals(new Wall())){next.add(tmp);}
+		if  (!tmp.equals(new Wall())){next.add(tmp);}
 		tmp=tab[x][y+1];
-		if  (tmp.equals(new Wall())){next.add(tmp);}
+		if  (!tmp.equals(new Wall())){next.add(tmp);}
 		tmp=tab[x][y-1];
-		if  (tmp.equals(new Wall())){next.add(tmp);}
+		if  (!tmp.equals(new Wall())){next.add(tmp);}
 		currentRoom.removeEntity(this);
-		int ran=(int)Math.random()*next.size();
+		int ran= new Random().nextInt(next.size());
 		currentRoom=next.get(ran);
 		currentRoom.addEntity(this);
 	}
@@ -46,19 +47,19 @@ public class MovingGuards extends Guards{
 		int noiseWest=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
 		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if (max==noiseNorth){
-			if(tab[x][y+1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y+1]; currentRoom.addEntity(this);}
+			if(!tab[x][y+1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y+1]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if (max==noiseSouth){
-			if(tab[x][y-1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y-1]; currentRoom.addEntity(this);}
+			if(!tab[x][y-1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y-1]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if (max==noiseEast){
-			if(tab[x-1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x-1][y]; currentRoom.addEntity(this);}
+			if(!tab[x-1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x-1][y]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if (max==noiseWest){
-			if(tab[x+1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x+1][y]; currentRoom.addEntity(this);}
+			if(!tab[x+1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x+1][y]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if (max==0){randomMove(tab);}

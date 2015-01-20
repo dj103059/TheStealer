@@ -3,8 +3,8 @@ package command;
 import java.util.HashMap;
 
 import enumate.EnumDirection;
-
 import room.Room;
+import room.Wall;
 import main.Main;
 
 public class Go extends Command{
@@ -61,7 +61,7 @@ public class Go extends Command{
         //catch the next room
         nextRoom=map[coordinate[0]][coordinate[1]];
         //if the next room isn't null and if you can enter, does the movement
-        if(canMove && nextRoom.equals(new Wall()) && nextRoom.canEnter(main.getHero().getInventory())){
+        if(canMove && !nextRoom.equals(new Wall()) /*&& nextRoom.canEnter(main.getHero().getInventory())*/){
             main.setCoordinate(coordinate);
             nextRoom.addEntity(main.getHero());
             currentRoom.removeEntity(main.getHero());
