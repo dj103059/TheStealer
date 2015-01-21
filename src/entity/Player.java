@@ -114,7 +114,7 @@ public class Player extends Entity{
 		int tmp=calculateWeight(i, gold, true);
 		if (tmp<=maxWeight){
 			if (i!=null){inventory.put(i+"",i);}
-			this.gold+=gold;
+			this.setGold(this.getGold() + gold);
 			weight=tmp;
 			return true;
 		}else{return false;}
@@ -134,7 +134,7 @@ public class Player extends Entity{
 		if (!act){return false;}
 		Item delete=inventory.get(name);
 		if (delete==null){return false;}
-		this.gold-=gold;
+		this.setGold(this.getGold() - gold);
 		weight=calculateWeight(delete,gold, false);
 		inventory.remove(name);
 		return true;
@@ -176,5 +176,13 @@ public class Player extends Entity{
 			}
 		}
 		return false;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
 	}
 }
