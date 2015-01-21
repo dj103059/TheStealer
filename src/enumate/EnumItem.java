@@ -1,7 +1,7 @@
 package enumate;
 
 public enum EnumItem {
-    BOX("box"),CLOCK("wristwatch"),BAIT("bait"),MAP("map");
+    BOX("box"),CLOCK("wristwatch"),BAIT("bait"),MAP("map"),UNKNOWN("?");
     // The name of the item as a string.
     private String itemName;
     
