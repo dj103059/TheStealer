@@ -148,9 +148,8 @@ public class Room {
     
     protected String descriptionofitem(){
     	 String des = "there are " + listofitem.size() + " item in the room : \n" ;
-		for(int i =0; i< listofitem.size();i++){
-			des += listofitem.get(i).getName() +" weight : "+listofitem.get(i).getWeight()+ " ,\n ";
-		}
+		
+			des += this.printItem();
 	return des;
     	
     }
