@@ -17,8 +17,8 @@ public class MovingGuards extends Guards{
 	 * Generate a random move
 	 */
 	private void randomMove(Room[][] tab){
-		int x=currentRoom.getX();	// Abscissa
-		int y=currentRoom.getY();	// Ordered
+		int x=getCurrentRoom().getX();	// Abscissa
+		int y=getCurrentRoom().getY();	// Ordered
 		ArrayList<Room> next=new ArrayList<Room>();
 		Room tmp;
 		tmp=tab[x+1][y];
@@ -29,10 +29,10 @@ public class MovingGuards extends Guards{
 		if  (!tmp.equals(new Wall())){next.add(tmp);}
 		tmp=tab[x][y-1];
 		if  (!tmp.equals(new Wall())){next.add(tmp);}
-		currentRoom.removeEntity(this);
+		getCurrentRoom().removeEntity(this);
 		int ran= new Random().nextInt(next.size());
-		currentRoom=next.get(ran);
-		currentRoom.addEntity(this);
+		setCurrentRoom(next.get(ran));
+		getCurrentRoom().addEntity(this);
 	}
 	/**
 	 * 
@@ -44,7 +44,7 @@ public class MovingGuards extends Guards{
 		double ran=Math.random();
 		if (ran<=ratio){
 			p.setGold(p.getGold()/2);
-			bribed=true;
+			setBribed(true);
 			System.out.println("You bribed the guard and you lost "+p.getGold()+" gold\n");
 			return true;
 		}else{
@@ -56,8 +56,8 @@ public class MovingGuards extends Guards{
 	 * Allows passage from one room to another, and manages noise
 	 */
 	private void change(Room[][] tab){
-		int x=currentRoom.getX();	// Abscissa
-		int y=currentRoom.getY();	// Ordered
+		int x=getCurrentRoom().getX();	// Abscissa
+		int y=getCurrentRoom().getY();	// Ordered
 		int noiseNorth=tab[x][y+1].getNoise()+tab[x+1][y+1].getNoise()+tab[x-1][y+1].getNoise();
 		int noiseSouth=tab[x][y-1].getNoise()+tab[x+1][y-1].getNoise()+tab[x-1][y-1].getNoise();
 		int noiseWest=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
@@ -68,19 +68,19 @@ public class MovingGuards extends Guards{
 		if ((y-2>0)&&!(tab[x][y-1].equals(new Wall()))){noiseSouth+=tab[x][y-2].getNoise();}
 		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if ((max==noiseNorth)&&(max!=0)){
-			if(!tab[x][y+1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y+1]; currentRoom.addEntity(this);}
+			if(!tab[x][y+1].equals(new Wall())){getCurrentRoom().removeEntity(this); setCurrentRoom(tab[x][y+1]); getCurrentRoom().addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseSouth)&&(max!=0)){
-			if(!tab[x][y-1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y-1]; currentRoom.addEntity(this);}
+			if(!tab[x][y-1].equals(new Wall())){getCurrentRoom().removeEntity(this); setCurrentRoom(tab[x][y-1]); getCurrentRoom().addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseEast)&&(max!=0)){
-			if(!tab[x-1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x+1][y]; currentRoom.addEntity(this);}
+			if(!tab[x-1][y].equals(new Wall())){getCurrentRoom().removeEntity(this); setCurrentRoom(tab[x+1][y]); getCurrentRoom().addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseWest)&&(max!=0)){
-			if(!tab[x+1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x-1][y]; currentRoom.addEntity(this);}
+			if(!tab[x+1][y].equals(new Wall())){getCurrentRoom().removeEntity(this); setCurrentRoom(tab[x-1][y]); getCurrentRoom().addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if (max==0){randomMove(tab);}

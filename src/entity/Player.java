@@ -25,7 +25,7 @@ public class Player extends Entity{
 	private int maxWeight;
 	
 	// Constructor
-	public Player(Room currentRoom, int maxWeight, String name){this.maxWeight=maxWeight;this.name=name;this.currentRoom=currentRoom;}
+	public Player(Room currentRoom, int maxWeight, String name){this.maxWeight=maxWeight;this.setName(name);this.setCurrentRoom(currentRoom);}
 	
 	// Methods
 	/**
@@ -48,8 +48,8 @@ public class Player extends Entity{
 	 * @param tab Rooms
 	 */
 	public void resetNoise(Room[][] tab){
-		int x=currentRoom.getX();
-		int y= currentRoom.getY();
+		int x=getCurrentRoom().getX();
+		int y= getCurrentRoom().getY();
 		tab[x][y+1].setNoise(0);
 		tab[x+1][y+1].setNoise(0);
 		tab[x-1][y+1].setNoise(0);
@@ -73,8 +73,8 @@ public class Player extends Entity{
 	 * @param tab Rooms
 	 */
 	public void addNoise(Room[][] tab){
-		int x=currentRoom.getX();
-		int y= currentRoom.getY();
+		int x=getCurrentRoom().getX();
+		int y= getCurrentRoom().getY();
 		tab[x][y].setNoise(3);
 		if (!tab[x+1][y].equals(new Wall())){
 			tab[x+1][y].setNoise(2);
@@ -146,7 +146,7 @@ public class Player extends Entity{
 	 */
 	public void move(Room next, Room[][] tab){
 		resetNoise(tab);
-		currentRoom=next;
+		setCurrentRoom(next);
 		addNoise(tab);
 	}
 	

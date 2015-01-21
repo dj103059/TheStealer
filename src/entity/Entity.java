@@ -7,9 +7,9 @@ import room.*;
  */
 public abstract class Entity {
 	// Where the entity currently is
-	protected Room currentRoom;	
+	private Room currentRoom;	
 	// Name of the entity
-	protected String name;
+	private String name;
 	
 	// Methods
 	/**
@@ -35,5 +35,11 @@ public abstract class Entity {
 	
 	// toString Override
 	@Override
-	public String toString(){return this.name;}
+	public String toString(){return this.getName();}
+	public void setCurrentRoom(Room currentRoom) {
+		this.currentRoom = currentRoom;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 }
