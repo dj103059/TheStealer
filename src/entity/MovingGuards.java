@@ -45,10 +45,10 @@ public class MovingGuards extends Guards{
 		int noiseSouth=tab[x][y-1].getNoise()+tab[x+1][y-1].getNoise()+tab[x-1][y-1].getNoise();
 		int noiseWest=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
 		int noiseEast=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
-		if (x+2<tab.length-2){noiseEast+=tab[x+2][y].getNoise();}
-		if (x-2>0){noiseWest+=tab[x-2][y].getNoise();}
-		if (y+2<tab.length-2){noiseNorth+=tab[x][y+2].getNoise();}
-		if (y-2>0){noiseSouth+=tab[x][y-2].getNoise();}
+		if ((x+2<tab.length-2)&&!(tab[x+1][y].equals(new Wall()))){noiseEast+=tab[x+2][y].getNoise();}
+		if ((x-2>0)&&!(tab[x-1][y].equals(new Wall()))){noiseWest+=tab[x-2][y].getNoise();}
+		if ((y+2<tab.length-2)&&!(tab[x][y+1].equals(new Wall()))){noiseNorth+=tab[x][y+2].getNoise();}
+		if ((y-2>0)&&!(tab[x][y-1].equals(new Wall()))){noiseSouth+=tab[x][y-2].getNoise();}
 		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if ((max==noiseNorth)&&(max!=0)){
 			if(!tab[x][y+1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y+1]; currentRoom.addEntity(this);}
