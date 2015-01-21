@@ -1,4 +1,7 @@
 package item;
+
+import enumate.EnumItem;
+
 /**
  * The box item
  **/
@@ -8,7 +11,7 @@ public class Box extends Item {
 	//constructor
 	public Box (){
 		this.setDescription(" you can hide you inside...");
-		this.setName("Box");
+		this.setName(EnumItem.BOX.toString());
 		this.setWeight(WEIGTH);
 	}
 	

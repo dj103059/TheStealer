@@ -1,4 +1,5 @@
 package item;
+import enumate.EnumItem;
 import room.*;
 
 
@@ -14,7 +15,7 @@ public class Map extends Item {
 	 */
 	public Map (Room [][] allRoom){
 		this.setDescription("You can see the position of the various entities in the area.");
-		this.setName("map");
+		this.setName(EnumItem.MAP.toString());
 		this.setWeight(WEIGTH);
 		this.setTabRoom(allRoom);
 		

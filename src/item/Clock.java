@@ -1,5 +1,6 @@
 package item;
 
+import enumate.EnumItem;
 import timer.Timer;
 
 public class Clock extends Item{
@@ -11,7 +12,7 @@ public class Clock extends Item{
 		//constructor
 		public Clock (Timer time){
 			this.setDescription(" you can see the time remaining");
-			this.setName("wristwatch");
+			this.setName(EnumItem.CLOCK.toString());
 			this.setWeight(weigth);
 			this.time = time;
 		}

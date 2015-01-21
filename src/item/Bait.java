@@ -1,5 +1,7 @@
 package item;
 
+import enumate.EnumItem;
+
 /**
  * 
  * The item Lure
@@ -11,7 +13,7 @@ public class Bait extends Item {
 		//constructor
 		public Bait (){
 			this.setDescription(" use it for make distraction!");
-			this.setName("bait");
+			this.setName(EnumItem.BAIT.toString());
 			this.setWeight(WEIGTH);
 		}
 		
