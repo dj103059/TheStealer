@@ -1,6 +1,6 @@
 package room;
 
-import item.Lure;
+import item.Bait;
 import item.Pass;
 
 /**
@@ -9,7 +9,7 @@ import item.Pass;
  */
 public class DirectorOffice extends RoomPass{
 	// a baiting item
-	private Lure lure;
+	private Bait bait;
 	
 	/*
 	 * constructor
@@ -17,7 +17,7 @@ public class DirectorOffice extends RoomPass{
 	public DirectorOffice(String description, String name) {
 		super(description, name);
 	    this.addItem(new Pass("Gold Room"));
-	    this.addItem(lure);
+	    this.addItem(bait);
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class DirectorOffice extends RoomPass{
 	public DirectorOffice(String description, String name,Room room) {
 		super(description, name,room);
 	    this.addItem(new Pass("Gold Room"));
-	    this.addItem(lure);
+	    this.addItem(bait);
 	}
 	
 
