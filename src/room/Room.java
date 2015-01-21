@@ -198,7 +198,7 @@ public class Room {
     public boolean isPlayer(){
     	ArrayList<Entity> tmp=this.getListofentity();
     	for (Entity t : tmp){
-    		if (t.getType()==3){return true;}
+    		if (t.getName().equals("hero")){return true;}
     	}
     	return false;
     }

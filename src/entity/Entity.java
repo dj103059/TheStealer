@@ -23,8 +23,8 @@ public abstract class Entity {
 	}
 	
 	// Getters
-	public int getType(){return 1;}
 	public Room getCurrentRoom(){return currentRoom;}
+	public String getName(){return name;}
 	
 	// Equals override
 	@Override
@@ -36,6 +36,7 @@ public abstract class Entity {
 		}
 		return false;
 	}
+	
 	// toString Override
 	@Override
 	public String toString(){return this.name;}

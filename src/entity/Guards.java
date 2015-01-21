@@ -49,8 +49,5 @@ public class Guards extends Entity{
 	
 	// Setters
 	public void switche(){active=!active;}
-	
-	// Type override
-	@Override
-	public int getType(){return 2;}
+
 }

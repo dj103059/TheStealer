@@ -29,7 +29,7 @@ public class Player extends Entity{
 	
 	// Methods
 	/**
-	 * 
+	 * Calculate the weight if we add/remove item/gold
 	 * @param i		Item
 	 * @param gold	Amount of gold
 	 * @param add	True if you add, false if you remove
@@ -44,6 +44,7 @@ public class Player extends Entity{
 		return weightTmp;
 	}
 	/**
+	 * Add a item/gold ti the player inventory
 	 * 
 	 * @param i		Item you want to add in the player inventory
 	 * @param gold	Amount of gold you want to add to the player
@@ -59,10 +60,13 @@ public class Player extends Entity{
 			return true;
 		}else{return false;}
 	}
-	
-	public void init(Item i){inventory.put(i+"",i);}
 	/**
-	 * 
+	 * Only to initiate the player inventory
+	 * @param i Item you want to add to the player inventory
+	 */
+	public void init(Item i){inventory.put(i+"",i);calculateWeight(i, 0, true);}
+	/**
+	 * Allows the player to drop an item
 	 * @param i		Item the player want to drop
 	 * @param gold	Amount of gold the player want to drop;
 	 * @return 		True if he did it
@@ -104,6 +108,4 @@ public class Player extends Entity{
 		}
 		return false;
 	}
-	@Override
-	public int getType(){return 3;}
 }

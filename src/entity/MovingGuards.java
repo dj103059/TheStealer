@@ -16,7 +16,7 @@ public class MovingGuards extends Guards{
 	/**
 	 * Generate a random move
 	 */
-	public void randomMove(Room[][] tab){
+	private void randomMove(Room[][] tab){
 		int x=currentRoom.getX();	// Abscissa
 		int y=currentRoom.getY();	// Ordered
 		ArrayList<Room> next=new ArrayList<Room>();
@@ -38,7 +38,7 @@ public class MovingGuards extends Guards{
 	/**
 	 * Allows passage from one room to another, and manages noise
 	 */
-	public void change(Room[][] tab){
+	private void change(Room[][] tab){
 		int x=currentRoom.getX();	// Abscissa
 		int y=currentRoom.getY();	// Ordered
 		int noiseNorth=tab[x][y+1].getNoise()+tab[x+1][y+1].getNoise()+tab[x-1][y+1].getNoise();
@@ -66,22 +66,27 @@ public class MovingGuards extends Guards{
 	} 
 
 	/**
-	 * 
+	 * Return the max value of the four
 	 * @param val1 first value
 	 * @param val2 second value
 	 * @param val3 third value
 	 * @param val4 fourth value
 	 * @return return the max value
 	 */
-	public int max(int val1, int val2, int val3, int val4){
+	private int max(int val1, int val2, int val3, int val4){
 		if ((val1>=val2)&&(val1>=val3)&&(val1>=val4)){return val1;}
 		else if ((val2>=val1)&&(val2>=val3)&&(val2>=val4)){return val2;}
 		else if ((val3>=val1)&&(val3>=val2)&&(val3>=val4)){return val3;}
 		else if ((val4>=val1)&&(val4>=val3)&&(val4>=val2)){return val4;}
 		return 0;
 	}
+	
 	@Override
+	/**
+	 * This time, move the guard and check if he sees the player
+	 */
 	public boolean act(Player p, Room[][]tab){this.change(tab);return this.check(p, tab);}
+	
 	// Setters
 	public void corrupt(){bribed=true;}
 }
