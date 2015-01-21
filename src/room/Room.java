@@ -269,4 +269,17 @@ public class Room {
 		return listofitem.get(name);
 	
 	}
+	
+	public String printItem()
+	{
+		String l="";
+		HashMap<String, Room> hashMapItem = new HashMap<String, Room>();
+		
+		for (String mapKey : hashMapItem.keySet()) {
+			 l="\n"+"\n"+hashMapItem.get(mapKey)+l;
+		
+		}
+		
+		return l;
+	}
 }
