@@ -5,13 +5,13 @@ package item;
  * The item Lure
  *
  */
-public class Lure extends Item {
+public class Bait extends Item {
 	// constant for the weigth of the lure
 		private static final int WEIGTH = 5 ;
 		//constructor
-		public Lure (){
+		public Bait (){
 			this.setDescription(" use it for make distraction!");
-			this.setName("Lure");
+			this.setName("bait");
 			this.setWeight(WEIGTH);
 		}
 		
