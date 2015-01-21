@@ -230,8 +230,6 @@ public class Room {
 	
 	public boolean canEnter(HashMap<String, Item> inventory)
 	{
-		if(this.getName().equals("Wall"))
-		{return false;}
 		return true;
 	}
 	
