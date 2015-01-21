@@ -59,6 +59,17 @@ public class Main {
     }
     
     /**
+     * introduction
+     */
+    
+    public void introduction(){
+    	System.out.println("You are a siff in a bank");
+    	System.out.println("You have some time to go to the treasure room and return to the starting point.");
+    	System.out.println("Be careful, there are guards, if you are seen, it's game over.");
+    	System.out.println("You will also need keys to move, find them.");
+    	System.out.println("Let's go!");
+    }
+    /**
      * Initialize the map
      * It adds rooms to each box of the table
      */
@@ -235,6 +246,7 @@ public class Main {
     
     public static void main(String[] args) {
 		Main main = new Main(5,5);
+		main.introduction();
 		main.play();
 	}
 
