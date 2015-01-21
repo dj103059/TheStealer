@@ -20,14 +20,14 @@ public class RoomPass extends Room {
 	public RoomPass(String description, String name) {
 		super(description, name);
 		this.pass1 = new Pass(name);
-		this.pass2 = new Pass("ALLROOM");
+		this.pass2 = new Pass("multipass");
 	}
 	
 	//constructor with the room who you drop the key
 	public RoomPass(String description, String name,Room room) {
 		super(description, name);
 		this.pass1 = new Pass(name);
-		this.pass2 = new Pass("ALLROOM");
+		this.pass2 = new Pass("multipass");
 		room.addItem(this.pass1);
 	}
 
