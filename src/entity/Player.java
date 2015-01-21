@@ -44,6 +44,65 @@ public class Player extends Entity{
 		return weightTmp;
 	}
 	/**
+	 * Reinitialize the noise 
+	 * @param tab Rooms
+	 */
+	private void resetNoise(Room[][] tab){
+		int x=currentRoom.getX();
+		int y= currentRoom.getY();
+		tab[x][y+1].setNoise(0);
+		tab[x+1][y+1].setNoise(0);
+		tab[x-1][y+1].setNoise(0);
+		tab[x][y-1].setNoise(0);
+		tab[x+1][y-1].setNoise(0);
+		tab[x-1][y-1].setNoise(0);
+		tab[x-1][y].setNoise(0);
+		tab[x-1][y-1].setNoise(0);
+		tab[x-1][y+1].setNoise(0);
+		tab[x+1][y].setNoise(0);
+		tab[x+1][y+1].setNoise(0);
+		tab[x+1][y-1].setNoise(0);
+		tab[x][y].setNoise(0);
+		if (x+2<tab.length-2){tab[x+2][y].setNoise(0);}
+		if (x-2>0){tab[x-2][y].setNoise(1);}
+		if (y+2<tab.length-2){tab[x][y+2].setNoise(1);}
+		if (y-2>0){tab[x][y-2].setNoise(1);}
+	}
+	/**
+	 * Add noise to the rooms
+	 * @param tab Rooms
+	 */
+	public void addNoise(Room[][] tab){
+		int x=currentRoom.getX();
+		int y= currentRoom.getY();
+		tab[x][y].setNoise(3);
+		if (!tab[x+1][y].equals(new Wall())){
+			tab[x+1][y].setNoise(2);
+			tab[x+1][y+1].setNoise(1);
+			tab[x+1][y-1].setNoise(1);
+			if (x+2<tab.length-2){tab[x+2][y].setNoise(1);}
+		}
+		if (!tab[x-1][y].equals(new Wall())){
+			tab[x-1][y].setNoise(2);
+			tab[x-1][y+1].setNoise(1);
+			tab[x-1][y-1].setNoise(1);
+			if (x-2>0){tab[x-2][y].setNoise(1);}
+		}
+		if (!tab[x][y+1].equals(new Wall())){
+			tab[x+1][y].setNoise(2);
+			tab[x+1][y+1].setNoise(1);
+			tab[x-1][y+1].setNoise(1);
+			if (y+2<tab.length-2){tab[x][y+2].setNoise(1);}
+		}
+		if (!tab[x][y-1].equals(new Wall())){
+			tab[x+1][y].setNoise(2);
+			tab[x+1][y-1].setNoise(1);
+			tab[x-1][y-1].setNoise(1);
+			if (y-2>0){tab[x][y-2].setNoise(1);}
+		}
+		
+	}
+	/**
 	 * Add a item/gold ti the player inventory
 	 * 
 	 * @param i		Item you want to add in the player inventory
@@ -79,6 +138,16 @@ public class Player extends Entity{
 		weight=calculateWeight(delete,gold, false);
 		inventory.remove(name);
 		return true;
+	}
+	/**
+	 * Update the room and the noise
+	 * @param next Next Room
+	 * @param tab	Rooms
+	 */
+	public void move(Room next, Room[][] tab){
+		resetNoise(tab);
+		currentRoom=next;
+		addNoise(tab);
 	}
 	
 	// Getters

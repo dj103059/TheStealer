@@ -17,10 +17,6 @@ public abstract class Entity {
 	 * @param next	The next area she wants to go 
 	 * @return True if she moved
 	 */
-	public boolean move(Room next){
-		if (next!=null){currentRoom=next;return true;}
-		else{return false;}
-	}
 	
 	// Getters
 	public Room getCurrentRoom(){return currentRoom;}
