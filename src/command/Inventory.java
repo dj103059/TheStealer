@@ -15,8 +15,8 @@ public class Inventory extends Command {
     public String act(String secondWord, Main main) {
         Player hero=main.getHero();
         HashMap<String,Item> inventory=hero.getInventory();
-        
-        String textInventory="You can stiil carry "+(hero.getMaxWeight()-hero.getWeight())+"kg.\nYou have ";
+        //Add what how much kg you can still carry
+        String textInventory="You can still carry "+(hero.getMaxWeight()-hero.getWeight())+"kg.\nYou have ";
         if(inventory.isEmpty()){
             textInventory+=" nothing in your inventory.";
             return textInventory;
