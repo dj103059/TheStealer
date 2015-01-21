@@ -32,4 +32,10 @@ public class Wall extends Room{
 	{
 		return false;
 	}
+	
+	@Override
+	public void setNoise(int n)
+	{
+	
+	}
 }
