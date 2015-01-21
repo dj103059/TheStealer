@@ -47,7 +47,7 @@ public class Player extends Entity{
 	 * Reinitialize the noise 
 	 * @param tab Rooms
 	 */
-	private void resetNoise(Room[][] tab){
+	public void resetNoise(Room[][] tab){
 		int x=currentRoom.getX();
 		int y= currentRoom.getY();
 		tab[x][y+1].setNoise(0);
@@ -158,8 +158,8 @@ public class Player extends Entity{
 	public Item getItem(String name){return inventory.get(name);}
 	
 	// Setters
-	public void hide(){hidden=true;}
-	public void show(){hidden=false;}
+	public void hide(Room[][] tab){hidden=true; act=false; resetNoise(tab);}
+	public void show(Room[][] tab){hidden=false; act=true; addNoise(tab);}
 	public void freeze(){act=false;}
 	public void unFreeze(){act=true;}
 	

@@ -34,7 +34,24 @@ public class MovingGuards extends Guards{
 		currentRoom=next.get(ran);
 		currentRoom.addEntity(this);
 	}
-	
+	/**
+	 * 
+	 * @param p The player
+	 * @return	True if the guard is blibed
+	 */
+	private boolean corrupt(Player p){
+		double ratio=p.getGold()/100;
+		double ran=Math.random();
+		if (ran<=ratio){
+			p.setGold(p.getGold()/2);
+			bribed=true;
+			System.out.println("You bribed the guard and you lost "+p.getGold()+" gold\n");
+			return true;
+		}else{
+			System.out.println("You are not able to bribed the guard\n");
+			return false;
+		}
+	}
 	/**
 	 * Allows passage from one room to another, and manages noise
 	 */
@@ -90,13 +107,19 @@ public class MovingGuards extends Guards{
 	 * This time, move the guard and check if he sees the player
 	 */
 	public boolean act(Player p, Room[][]tab){
-		boolean first=this.check(p, tab);
-		this.change(tab);
-		return this.check(p, tab)||first;
+		if (this.check(p, tab)){
+			if(!corrupt(p)){return true;}
+		}else{
+			this.change(tab);
+			if (this.check(p, tab)){
+				if (corrupt(p)){
+					return false;
+				}else{return true;}
+			}
+		}
+		return false;
 	}
 	
-	// Setters
-	public void corrupt(){bribed=true;}
 }
 
 
