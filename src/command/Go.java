@@ -68,7 +68,7 @@ public class Go extends Command{
             nextRoom.addEntity(hero);
             currentRoom.removeEntity(hero);
             hero.move(nextRoom);
-            return "You go "+secondWord;
+            return "You go "+secondWord+" and now "+nextRoom.getLongDescription();
         }
         return "You can't go "+secondWord;
     }

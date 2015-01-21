@@ -147,7 +147,7 @@ public class Room {
     }
     
     protected String descriptionofitem(){
-    	 String des = "there are " + listofitem.size() + " item in the room : \n" ;
+    	 String des = ", there are " + listofitem.size() + " item in the room : \n" ;
 		
 			des += this.printItem();
 	return des;
@@ -270,13 +270,13 @@ public class Room {
 	public String printItem()
 	{
 		String l="";
-		HashMap<String, Room> hashMapItem = new HashMap<String, Room>();
 		
-		for (String mapKey : hashMapItem.keySet()) {
-			 l="\n"+"\n"+hashMapItem.get(mapKey)+l;
+		
+		for (String mapKey : listofitem.keySet()) {
+			 l +=listofitem.get(mapKey)+", "+listofitem.get(mapKey).getDescription()+" weigth: "+listofitem.get(mapKey).getWeight()+"\n";
 		
 		}
 		
-		return l;
+		return l+"\n";
 	}
 }
