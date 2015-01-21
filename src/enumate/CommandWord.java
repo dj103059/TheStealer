@@ -10,6 +10,7 @@ public enum CommandWord {
 
     GO("go",new Go()),USE("use", new Use()),HIDE("hide",new Hide()),
     TAKE("take",new Take()),DROP("drop",new Drop()),END("end",new End()),
+    INVENTORY("inventory",new Inventory()),
     UNKNOWN("?",new Unknown());
     
     // The command string.
