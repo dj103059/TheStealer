@@ -50,8 +50,8 @@ public class Main {
         coordinate[1]=1;
         hero = new Player(currentRoom,100,"hero");
         bankMap[1][1].addEntity(hero);
-        movingguard = new MovingGuards(bankMap[3][3],false,true,"Guard");
-        bankMap[3][3].addEntity(movingguard);
+        movingguard = new MovingGuards(bankMap[length/2][width/2],false,true,"Guard");
+        bankMap[length/2][width/2].addEntity(movingguard);
         hero.init(map);
         hero.init(clock);
         
@@ -245,7 +245,7 @@ public class Main {
     //=================================================================
     
     public static void main(String[] args) {
-		Main main = new Main(5,5);
+		Main main = new Main(15,15);
 		main.introduction();
 		main.play();
 	}
