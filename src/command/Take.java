@@ -21,7 +21,7 @@ public class Take extends Command{
         }
         hero.add(it,0);
         currentRoom.removeItem(it);
-        return itemToTake+" has been dropped on the floor.";
+        return itemToTake+" has been took on the floor.";
     }
 
 }

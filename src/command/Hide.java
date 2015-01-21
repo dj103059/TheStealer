@@ -1,7 +1,10 @@
 package command;
 
-import item.Box;
+import java.util.HashMap;
+
+import item.Item;
 import entity.Player;
+import enumate.EnumItem;
 import main.Main;
 
 public class Hide extends Command{
@@ -13,7 +16,8 @@ public class Hide extends Command{
     @Override
     public String act(String secondWord, Main main) {
         Player hero = main.getHero();
-        if(hero.getCurrentRoom().equals(new Box())){
+        HashMap<String,Item> roomInventory = hero.getCurrentRoom().getListofitem();
+        if(roomInventory.containsKey(EnumItem.BOX.toString())){
             hero.hide();
             return "You are hiding under a box.";
         }
