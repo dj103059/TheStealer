@@ -31,7 +31,6 @@ public class MovingGuards extends Guards{
 		if  (!tmp.equals(new Wall())){next.add(tmp);}
 		currentRoom.removeEntity(this);
 		int ran= new Random().nextInt(next.size());
-		System.out.println("Aleat : "+ran+"\n");
 		currentRoom=next.get(ran);
 		currentRoom.addEntity(this);
 	}
@@ -44,26 +43,22 @@ public class MovingGuards extends Guards{
 		int y=currentRoom.getY();	// Ordered
 		int noiseNorth=tab[x][y+1].getNoise()+tab[x+1][y+1].getNoise()+tab[x-1][y+1].getNoise();
 		int noiseSouth=tab[x][y-1].getNoise()+tab[x+1][y-1].getNoise()+tab[x-1][y-1].getNoise();
-		int noiseEast=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
-		int noiseWest=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
+		int noiseWest=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
+		int noiseEast=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
 		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);
 		if ((max==noiseNorth)&&(max!=0)){
-			System.out.println("North\n");
 			if(!tab[x][y+1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y+1]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseSouth)&&(max!=0)){
-			System.out.println("South\n");
 			if(!tab[x][y-1].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x][y-1]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseEast)&&(max!=0)){
-			System.out.println("East\n");
 			if(!tab[x-1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x-1][y]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseWest)&&(max!=0)){
-			System.out.println("West\n");
 			if(!tab[x+1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x+1][y]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
