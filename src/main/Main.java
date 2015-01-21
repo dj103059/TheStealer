@@ -161,6 +161,7 @@ public class Main {
      */
     private void endTurn(){
         System.out.println("x : "+coordinate[0] + "\ny : "+coordinate[1]);
+        System.out.println("guard gx : "+movingguard.getCurrentRoom().getX() + "\n guard y : "+movingguard.getCurrentRoom().getY());
     }
     
     //=================================================================

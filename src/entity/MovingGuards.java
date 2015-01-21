@@ -55,11 +55,11 @@ public class MovingGuards extends Guards{
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseEast)&&(max!=0)){
-			if(!tab[x-1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x-1][y]; currentRoom.addEntity(this);}
+			if(!tab[x-1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x+1][y]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if ((max==noiseWest)&&(max!=0)){
-			if(!tab[x+1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x+1][y]; currentRoom.addEntity(this);}
+			if(!tab[x+1][y].equals(new Wall())){currentRoom.removeEntity(this); currentRoom=tab[x-1][y]; currentRoom.addEntity(this);}
 			else{randomMove(tab);}
 		}
 		else if (max==0){randomMove(tab);}

@@ -64,9 +64,9 @@ public class Player extends Entity{
 		tab[x+1][y-1].setNoise(0);
 		tab[x][y].setNoise(0);
 		if (x+2<tab.length-2){tab[x+2][y].setNoise(0);}
-		if (x-2>0){tab[x-2][y].setNoise(1);}
-		if (y+2<tab.length-2){tab[x][y+2].setNoise(1);}
-		if (y-2>0){tab[x][y-2].setNoise(1);}
+		if (x-2>0){tab[x-2][y].setNoise(0);}
+		if (y+2<tab.length-2){tab[x][y+2].setNoise(0);}
+		if (y-2>0){tab[x][y-2].setNoise(0);}
 	}
 	/**
 	 * Add noise to the rooms
