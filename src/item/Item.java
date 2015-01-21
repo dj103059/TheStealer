@@ -43,7 +43,7 @@ public abstract class Item {
 	
 	@Override
 	public String toString(){
-		return "Name of item : " + this.name+ "/n description of this item : "+this.description+"/n";
+		return this.name;
 	}
 	@Override
 	public boolean equals(Object obj){
