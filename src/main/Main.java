@@ -16,6 +16,7 @@ import room.RoomPass;
 import room.Wall;
 import timer.Timer;
 import item.*;
+import item.Map;
 
 public class Main {
     //the map
