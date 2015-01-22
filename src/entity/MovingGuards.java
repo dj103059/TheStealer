@@ -19,7 +19,7 @@ public class MovingGuards extends Guards{
 	private void randomMove(Room[][] tab){
 		int x=getCurrentRoom().getX();	// Abscissa
 		int y=getCurrentRoom().getY();	// Ordered
-		ArrayList<Room> next=new ArrayList<Room>();
+		ArrayList<Room> next=new ArrayList<Room>();	// List of rooms where he can go
 		Room tmp;
 		tmp=tab[x+1][y];
 		if  (!tmp.equals(new Wall())){next.add(tmp);}
@@ -37,7 +37,7 @@ public class MovingGuards extends Guards{
 	/**
 	 * 
 	 * @param p The player
-	 * @return	True if the guard is blibed
+	 * @return	True if the guard is bribed
 	 */
 	private boolean corrupt(Player p){
 		double ratio=p.getGold()/100;
@@ -49,7 +49,7 @@ public class MovingGuards extends Guards{
 			return true;
 		}else{
 			System.out.println("You are not able to bribed the guard\n");
-			return false;
+			return false;	
 		}
 	}
 	/**
@@ -62,11 +62,11 @@ public class MovingGuards extends Guards{
 		int noiseSouth=tab[x][y-1].getNoise()+tab[x+1][y-1].getNoise()+tab[x-1][y-1].getNoise();
 		int noiseWest=tab[x-1][y].getNoise()+tab[x-1][y-1].getNoise()+tab[x-1][y+1].getNoise();
 		int noiseEast=tab[x+1][y].getNoise()+tab[x+1][y+1].getNoise()+tab[x+1][y-1].getNoise();
-		if ((x+2<tab.length-2)&&!(tab[x+1][y].equals(new Wall()))){noiseEast+=tab[x+2][y].getNoise();}
-		if ((x-2>0)&&!(tab[x-1][y].equals(new Wall()))){noiseWest+=tab[x-2][y].getNoise();}
-		if ((y+2<tab.length-2)&&!(tab[x][y+1].equals(new Wall()))){noiseNorth+=tab[x][y+2].getNoise();}
-		if ((y-2>0)&&!(tab[x][y-1].equals(new Wall()))){noiseSouth+=tab[x][y-2].getNoise();}
-		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);
+		if ((x+2<tab.length-2)&&!(tab[x+1][y].equals(new Wall()))){noiseEast+=tab[x+2][y].getNoise();}		// He can't hear through walls
+		if ((x-2>0)&&!(tab[x-1][y].equals(new Wall()))){noiseWest+=tab[x-2][y].getNoise();}					// He can't hear through walls
+		if ((y+2<tab.length-2)&&!(tab[x][y+1].equals(new Wall()))){noiseNorth+=tab[x][y+2].getNoise();}		// He can't hear through walls
+		if ((y-2>0)&&!(tab[x][y-1].equals(new Wall()))){noiseSouth+=tab[x][y-2].getNoise();}				// He can't hear through walls
+		int max=max(noiseNorth, noiseSouth, noiseEast, noiseWest);											// Which side is the loudest
 		if ((max==noiseNorth)&&(max!=0)){
 			if(!tab[x][y+1].equals(new Wall())){getCurrentRoom().removeEntity(this); setCurrentRoom(tab[x][y+1]); getCurrentRoom().addEntity(this);}
 			else{randomMove(tab);}
@@ -104,22 +104,19 @@ public class MovingGuards extends Guards{
 	
 	@Override
 	/**
-	 * This time, move the guard and check if he sees the player
+	 * This time, move the guard and check if he sees the player, and manages the corruption
 	 */
 	public boolean act(Player p, Room[][]tab){
-		if (this.check(p, tab)){
-			if(!corrupt(p)){return true;}
-		}else{
+		if (this.check(p, tab)){if(!corrupt(p)){return true;}}
+		else{
 			this.change(tab);
 			if (this.check(p, tab)){
-				if (corrupt(p)){
-					return false;
-				}else{return true;}
+				if (corrupt(p)){return false;}
+				else{return true;}
 			}
 		}
 		return false;
 	}
-	
 }
 
 
