@@ -85,9 +85,7 @@ public class Room {
     public void addItem(Item item){
     	if(this.listofitem.put(""+item,item) != null){
     		System.out.println("succes");
-    	}else{
-    			System.out.println("fail");
-    		}
+    	}
     			
     }
     
