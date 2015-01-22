@@ -16,8 +16,8 @@ public class DirectorOffice extends RoomPass{
 	 */
 	public DirectorOffice(String description, String name) {
 		super(description, name);
-	    this.addItem(new Pass("pass-O"));
-	    this.addItem(bait);
+	    this.addItem(new Pass("pass-G"));
+	    //this.addItem(bait);
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class DirectorOffice extends RoomPass{
 	public DirectorOffice(String description, String name,Room room) {
 		super(description, name,room);
 	    this.addItem(new Pass("Gold Room"));
-	    this.addItem(bait);
+	    //this.addItem(bait);
 	}
 	
 

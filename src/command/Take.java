@@ -60,7 +60,8 @@ public class Take extends Command{
      */
     private int getGold(Main main){
         EnumGolds correctGold=new EnumGolds();
-        Scanner reader = new Scanner(System.in);
+        @SuppressWarnings("resource")
+		Scanner reader = new Scanner(System.in);
         String inputLine;   // will hold the full input line
         String word1 = null;
         do{
@@ -69,7 +70,8 @@ public class Take extends Command{
             main.printer("> ");     // print prompt
             inputLine = reader.nextLine();
             // Find up the word on the line.
-            Scanner tokenizer = new Scanner(inputLine);
+            @SuppressWarnings("resource")
+			Scanner tokenizer = new Scanner(inputLine);
             if(tokenizer.hasNext()) {
                 word1 = tokenizer.next();      // get first word
             }

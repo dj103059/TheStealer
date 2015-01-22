@@ -29,11 +29,13 @@ public class Drop extends Command{
         if(item.equals(EnumItem.GOLD) && currentRoom.equals(new RoomGold("default room gold","roomgold"))){
             RoomGold goldRoom=(RoomGold) currentRoom;
             int gold = getGold(main);
+        
             //verify if he can drio this amount of gold
             if(hero.getGold()<gold){
                 return "You haven't this amount of gold on you.";
             }
             hero.drop(null,gold);
+            goldRoom.setGold(gold+goldRoom.getGold());;
             return "You drop "+gold+" gold";
         }
         Item it = hero.getItem(itemToDrop);
@@ -53,16 +55,18 @@ public class Drop extends Command{
      */
     private int getGold(Main main){
         EnumGolds correctGold=new EnumGolds();
-        Scanner reader = new Scanner(System.in);
+        @SuppressWarnings("resource")
+		Scanner reader = new Scanner(System.in);
         String inputLine;   // will hold the full input line
         String word1 = null;
         do{
             main.printer("How much gold do you want to drop? ");
             main.printer("You can only drop : "+correctGold.showAll());
-            main.printer("And you have on you : "+main.getHero().getGold())
+            main.printer("And you have on you : "+main.getHero().getGold());
             inputLine = reader.nextLine();
             // Find up the word on the line.
-            Scanner tokenizer = new Scanner(inputLine);
+            @SuppressWarnings("resource")
+			Scanner tokenizer = new Scanner(inputLine);
             if(tokenizer.hasNext()) {
                 word1 = tokenizer.next();      // get first word
             }
