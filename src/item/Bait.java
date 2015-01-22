@@ -15,6 +15,18 @@ public class Bait extends Item{
 		private static final int MAX_TURN=5;
 		private boolean isActive;
 		private int numbTurn;
+		public int getNumbTurn() {
+			return numbTurn;
+		}
+
+		public void setNumbTurn(int numbTurn) {
+			this.numbTurn = numbTurn;
+		}
+
+		public void setActive(boolean isActive) {
+			this.isActive = isActive;
+		}
+
 		//constructor
 		public Bait (){
 			this.setDescription(" Use it to create a distraction !");
