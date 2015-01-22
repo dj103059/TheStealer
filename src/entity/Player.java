@@ -120,7 +120,7 @@ public class Player extends Entity{
 	 * Only to initiate the player inventory
 	 * @param i Item you want to add to the player inventory
 	 */
-	public void init(Item i){inventory.put(i+"",i);calculateWeight(i, 0, true);}
+	public void init(Item i){inventory.put(i+"",i);weight=calculateWeight(i, 0, true);}
 	/**
 	 * Allows the player to drop an item
 	 * @param i		Item the player want to drop

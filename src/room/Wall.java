@@ -4,7 +4,7 @@ import item.Item;
 
 import java.util.HashMap;
 
-import entity.Player;
+
 
 public class Wall extends Room{
 	

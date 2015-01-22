@@ -201,12 +201,10 @@ public class Room {
     }
 
 	public int getNoise() {
-		if(this==null){
-			return 0;
-		}else{
+		
 			return noise;
 		}
-	}
+	
 
 	public void setNoise(int noise) {
 		this.noise = noise;

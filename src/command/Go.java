@@ -5,7 +5,6 @@ import java.util.HashMap;
 import entity.Player;
 import enumate.EnumDirection;
 import room.Room;
-import room.Wall;
 import main.Main;
 
 public class Go extends Command{
