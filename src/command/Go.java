@@ -7,6 +7,11 @@ import enumate.EnumDirection;
 import room.Room;
 import main.Main;
 
+/**
+ * Move command of the game. We use it as "go east" or west, north, south.
+ * @author user
+ *
+ */
 public class Go extends Command{
     
     /**

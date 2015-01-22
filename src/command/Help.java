@@ -3,6 +3,10 @@ package command;
 import enumate.CommandWords;
 import main.Main;
 
+/**
+ * Show all the commands you can use in the game
+ * 
+ */
 public class Help extends Command {
 
     /**

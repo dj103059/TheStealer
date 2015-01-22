@@ -2,6 +2,10 @@ package command;
 
 import main.Main;
 
+/**
+ * Permits to quit the game
+ *
+ */
 public class End extends Command {
 
     /**

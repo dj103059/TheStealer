@@ -12,6 +12,11 @@ import enumate.EnumItem;
 import enumate.Items;
 import main.Main;
 
+/**
+ * The command to Drop an item or gold in the current room
+ * We use it like that : "drop item" or "drop gold" and the amount of gold
+ *
+ */
 public class Drop extends Command{
 
     /**
