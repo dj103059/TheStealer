@@ -77,7 +77,7 @@ public class Main {
   */
     public boolean win()
     {
-    	if ((bankMap[finishRoom[0]][finishRoom[1]].containsEntity(hero))&&(hero.getGold()>=0))
+    	if ((bankMap[finishRoom[0]][finishRoom[1]].containsEntity(hero))&&(hero.getGold()>0))
     		return true;
     	return false;
     }
@@ -234,7 +234,7 @@ public class Main {
             bankMap[x][y]=new Room("room"+x+"-"+y,"Awesome room with a stationary guard");
             bankMap[x][y].setX(x);
             bankMap[x][y].setY(y);
-            Guards guard=new Guards(bankMap[x][y], false, true, "Guard"+y);
+            Guards guard=new Guards(bankMap[x][y], false, true, "Guard "+x+"-"+y);
             listGuards.add(guard);
             bankMap[x][y].addEntity(guard);
             break;
@@ -242,7 +242,7 @@ public class Main {
             bankMap[x][y]=new Room("room"+x+"-"+y,"Awesome room with a mobile guard at the beginning");
             bankMap[x][y].setX(x);
             bankMap[x][y].setY(y);
-            Guards guardMobile=new MovingGuards(bankMap[x][y], false, true, "Guard"+x);
+            Guards guardMobile=new MovingGuards(bankMap[x][y], false, true, "Guard "+x+"-"+y);
             listGuards.add(guardMobile);
             bankMap[x][y].addEntity(guardMobile);
             break;
