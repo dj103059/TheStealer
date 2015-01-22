@@ -320,6 +320,7 @@ public class Main {
      * Process the end of a turn
      */
     private void endTurn(){
+    	printer("End Turn");
         if (time.decrementTime(5)==false)
         {
             gameOver();
