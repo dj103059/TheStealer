@@ -28,10 +28,10 @@ public class Guards extends Entity{
 		if (active){
 			int x=getCurrentRoom().getX();	// Abscissa
 			int y=getCurrentRoom().getY();	// Ordered	
-			boolean south=tab[x][y+1].isPlayer();
-			boolean north=tab[x][y-1].isPlayer();
-			boolean west=tab[x-1][y].isPlayer();
-			boolean east=tab[x+1][y].isPlayer();
+			boolean north=tab[x][y+1].isPlayer();
+			boolean south=tab[x][y-1].isPlayer();
+			boolean east=tab[x-1][y].isPlayer();
+			boolean west=tab[x+1][y].isPlayer();
 			boolean current=tab[x][y].isPlayer();
 			if (north||south||east||west||current){return true&&!isBribed()&&!(p.getHidden()>0);}	// If he see the player and manage if the guard is bribed
 		}
