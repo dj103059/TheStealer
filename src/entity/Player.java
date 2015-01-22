@@ -143,6 +143,7 @@ public class Player extends Entity{
 	 * @param tab	Rooms
 	 */
 	public void move(Room next, Room[][] tab){
+		setCurrentRoom(next);
 		resetNoise(tab);
 		addNoise(tab);
 	}
