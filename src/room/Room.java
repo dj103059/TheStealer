@@ -12,10 +12,10 @@ import java.util.Set;
  *
  */
 public class Room {
-	//name of the room
-	private String name;
-	//description of the room
-	private String description;
+    //name of the room
+    private String name;
+    //description of the room
+    private String description;
     private HashMap<String, Room> exits; // stores exits of this room.
     //list of item in the room
     private HashMap<String,Item> listofitem;
@@ -34,13 +34,13 @@ public class Room {
      * @return
      */
     public boolean containsEntity(Entity en){
-    	return listofentity.contains(en);
-    	
+        return listofentity.contains(en);
+        
     }
     
     public boolean containsItem(Item en){
-    	return listofitem.containsValue(en);
-    	
+        return listofitem.containsValue(en);
+        
     }
     
     /**
@@ -60,10 +60,10 @@ public class Room {
     /**remove and add in the list of item and list of entity
      */
     public boolean removeItem(Item item){
-    	if(this.listofitem.remove(""+item) != null){
-    		return true;
-    	}
-    	return false;
+        if(this.listofitem.remove(""+item) != null){
+            return true;
+        }
+        return false;
     }
     
     /**
@@ -74,7 +74,7 @@ public class Room {
      */
     
     public boolean removeEntity(Entity entity){
-    	return this.listofentity.remove(entity);
+        return this.listofentity.remove(entity);
     }
     
     /**
@@ -83,10 +83,10 @@ public class Room {
      * @param item
      */
     public void addItem(Item item){
-    	if(this.listofitem.put(""+item,item) != null){
-    		System.out.println("succes");
-    	}
-    			
+        if(this.listofitem.put(""+item,item) != null){
+            System.out.println("succes");
+        }
+                
     }
     
     /**
@@ -94,7 +94,7 @@ public class Room {
      * @param entity
      */
     public void addEntity(Entity entity){
-    	this.listofentity.add(entity);
+        this.listofentity.add(entity);
     }
     /**
      * Define an exit from this room.
@@ -123,9 +123,9 @@ public class Room {
      * @return A long description of this room
      */
     public String getLongDescription() {
-    	String des = "You are " + description ;
-    	des += descriptionofitem();
-    	des +=  "\n" +  getExitString();
+        String des = "You are " + description ;
+        des += descriptionofitem();
+        des +=  "\n" +  getExitString();
         return des ;
     }
 
@@ -145,11 +145,11 @@ public class Room {
     }
     
     protected String descriptionofitem(){
-    	 String des = ", there are " + listofitem.size() + " item in the room : \n" ;
-		
-			des += this.printItem();
-	return des;
-    	
+         String des = ", there are " + listofitem.size() + " item in the room : \n" ;
+        
+            des += this.printItem();
+    return des;
+        
     }
     
 
@@ -169,119 +169,119 @@ public class Room {
      * getter and setter
      */
 
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-	
-    public HashMap<String,Item> getListofitem() {
-		return listofitem;
-	}
-    
-    public ArrayList<Entity> getListofentity() {
-		return listofentity;
-	}
-    public boolean isPlayer(){
-    	ArrayList<Entity> tmp=this.getListofentity();
-    	for (Entity t : tmp){
-    		if (t.getName().equals("hero")){return true;}
-    	}
-    	return false;
+    public int getX() {
+        return x;
     }
 
-	public int getNoise() {
-		
-			return noise;
-		}
-	
+    public void setX(int x) {
+        this.x = x;
+    }
 
-	public void setNoise(int noise) {
-		this.noise = noise;
-	}
-	
-	public void addNoise(int noise){
-		this.noise=this.noise+noise;
-		if (this.noise<0)
-		{
-			this.noise=0;
-		}
-	}
+    public int getY() {
+        return y;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setY(int y) {
+        this.y = y;
+    }
+    
+    public HashMap<String,Item> getListofitem() {
+        return listofitem;
+    }
+    
+    public ArrayList<Entity> getListofentity() {
+        return listofentity;
+    }
+    public boolean isPlayer(){
+        ArrayList<Entity> tmp=this.getListofentity();
+        for (Entity t : tmp){
+            if (t.getName().equals("hero")){return true;}
+        }
+        return false;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void setDescription(String description){
-		this.description=description;
-	
-	}
-	
-	public boolean canEnter(HashMap<String, Item> inventory)
-	{
-		return true;
-	}
-	
-	@Override
-	public boolean equals(Object obj){
-		if (this==obj){return true;}
-		else if (obj instanceof Room){
-			Room tmp=(Room) obj;
-			if (this.getListofitem().equals(tmp.getListofitem())){
-				if (this.getName().equals(tmp.getName())){
-					if (this.getShortDescription().equals(tmp.getShortDescription())){
-						if(this.getListofentity().equals(tmp.getListofentity())){
-							if(this.getExitString().equals(tmp.getExitString())){
-								if(this.getX()==(tmp.getX())){
-									if(this.getY()==(tmp.getY())){
-										if(this.getNoise()==(tmp.getNoise())){
-											return true;
-										}
-										
-									}
-									
-								}
-								}
-							}
-						}
-				}
-			}
-		}
-		return false;
-	}
-	
-	public Item getItem(String name)
-	{
-		
-		return listofitem.get(name);
-	
-	}
-	
-	public String printItem()
-	{
-		String l="";
-		
-		
-		for (String mapKey : listofitem.keySet()) {
-			 l +=listofitem.get(mapKey)+", "+listofitem.get(mapKey).getDescription()+" weigth: "+listofitem.get(mapKey).getWeight()+"\n";
-		
-		}
-		
-		return l+"\n";
-	}
-	
+    public int getNoise() {
+        
+            return noise;
+        }
+    
+
+    public void setNoise(int noise) {
+        this.noise = noise;
+    }
+    
+    public void addNoise(int noise){
+        this.noise=this.noise+noise;
+        if (this.noise<0)
+        {
+            this.noise=0;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setDescription(String description){
+        this.description=description;
+    
+    }
+    
+    public boolean canEnter(HashMap<String, Item> inventory)
+    {
+        return true;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if (this==obj){return true;}
+        else if (obj instanceof Room){
+            Room tmp=(Room) obj;
+            if (this.getListofitem().equals(tmp.getListofitem())){
+                if (this.getName().equals(tmp.getName())){
+                    if (this.getShortDescription().equals(tmp.getShortDescription())){
+                        if(this.getListofentity().equals(tmp.getListofentity())){
+                            if(this.getExitString().equals(tmp.getExitString())){
+                                if(this.getX()==(tmp.getX())){
+                                    if(this.getY()==(tmp.getY())){
+                                        if(this.getNoise()==(tmp.getNoise())){
+                                            return true;
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                }
+                            }
+                        }
+                }
+            }
+        }
+        return false;
+    }
+    
+    public Item getItem(String name)
+    {
+        
+        return listofitem.get(name);
+    
+    }
+    
+    public String printItem()
+    {
+        String l="";
+        
+        
+        for (String mapKey : listofitem.keySet()) {
+             l +=listofitem.get(mapKey)+", "+listofitem.get(mapKey).getDescription()+" weigth: "+listofitem.get(mapKey).getWeight()+"\n";
+        
+        }
+        
+        return l+"\n";
+    }
+    
 }
