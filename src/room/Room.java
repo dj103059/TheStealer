@@ -209,6 +209,14 @@ public class Room {
 	public void setNoise(int noise) {
 		this.noise = noise;
 	}
+	
+	public void addNoise(int noise){
+		this.noise=this.noise+noise;
+		if (this.noise<0)
+		{
+			this.noise=0;
+		}
+	}
 
 	public String getName() {
 		return name;
@@ -275,4 +283,5 @@ public class Room {
 		
 		return l+"\n";
 	}
+	
 }

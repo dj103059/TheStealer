@@ -48,23 +48,19 @@ public class Player extends Entity{
 	public void resetNoise(Room[][] tab){
 		int x=getCurrentRoom().getX();
 		int y= getCurrentRoom().getY();
-		tab[x][y+1].setNoise(0);
-		tab[x+1][y+1].setNoise(0);
-		tab[x-1][y+1].setNoise(0);
-		tab[x][y-1].setNoise(0);
-		tab[x+1][y-1].setNoise(0);
-		tab[x-1][y-1].setNoise(0);
-		tab[x-1][y].setNoise(0);
-		tab[x-1][y-1].setNoise(0);
-		tab[x-1][y+1].setNoise(0);
-		tab[x+1][y].setNoise(0);
-		tab[x+1][y+1].setNoise(0);
-		tab[x+1][y-1].setNoise(0);
 		tab[x][y].setNoise(0);
-		if (x+2<tab.length-2){tab[x+2][y].setNoise(0);}
-		if (x-2>0){tab[x-2][y].setNoise(0);}
-		if (y+2<tab.length-2){tab[x][y+2].setNoise(0);}
-		if (y-2>0){tab[x][y-2].setNoise(0);}
+		tab[x+1][y].setNoise(0);
+		tab[x-1][y].setNoise(0);
+		tab[x][y+1].setNoise(0);
+		tab[x][y-1].setNoise(0);
+		tab[x+1][y+1].setNoise(0);
+		tab[x-1][y-1].setNoise(0);
+		tab[x-1][y+1].setNoise(0);
+		tab[x+1][y-1].setNoise(0);
+		if (x+2<=tab.length-2){tab[x+2][y].setNoise(0);}
+		if (x-2>=0){tab[x-2][y].setNoise(0);}
+		if (y+2<=tab.length-2){tab[x][y+2].setNoise(0);}
+		if (y-2>=0){tab[x][y-2].setNoise(0);}
 	}
 	/**
 	 * Add noise to the rooms
@@ -73,30 +69,30 @@ public class Player extends Entity{
 	public void addNoise(Room[][] tab){
 		int x=getCurrentRoom().getX();
 		int y= getCurrentRoom().getY();
-		tab[x][y].setNoise(3);
+		tab[x][y].addNoise(3);
 		if (!tab[x+1][y].equals(new Wall())){
-			tab[x+1][y].setNoise(2);
-			tab[x+1][y+1].setNoise(1);
-			tab[x+1][y-1].setNoise(1);
-			if (x+2<tab.length-2){tab[x+2][y].setNoise(1);}
+			tab[x+1][y].addNoise(2);
+			tab[x+1][y+1].addNoise(1);
+			tab[x+1][y-1].addNoise(1);
+			if ((x+2<=tab.length-1)&&!(tab[x+1][y].equals(new Wall()))){tab[x+2][y].addNoise(1);}
 		}
 		if (!tab[x-1][y].equals(new Wall())){
-			tab[x-1][y].setNoise(2);
-			tab[x-1][y+1].setNoise(1);
-			tab[x-1][y-1].setNoise(1);
-			if (x-2>0){tab[x-2][y].setNoise(1);}
+			tab[x-1][y].addNoise(2);
+			tab[x-1][y+1].addNoise(1);
+			tab[x-1][y-1].addNoise(1);
+			if ((x-2>=0)&&!(tab[x-1][y].equals(new Wall()))){tab[x-2][y].addNoise(1);}
 		}
 		if (!tab[x][y+1].equals(new Wall())){
-			tab[x+1][y].setNoise(2);
-			tab[x+1][y+1].setNoise(1);
-			tab[x-1][y+1].setNoise(1);
-			if (y+2<tab.length-2){tab[x][y+2].setNoise(1);}
+			tab[x][y+1].addNoise(2);
+			tab[x+1][y+1].addNoise(1);
+			tab[x-1][y+1].addNoise(1);
+			if ((y+2<=tab.length-1)&&!(tab[x][y+1].equals(new Wall()))){tab[x][y+2].addNoise(1);}
 		}
 		if (!tab[x][y-1].equals(new Wall())){
-			tab[x+1][y].setNoise(2);
-			tab[x+1][y-1].setNoise(1);
-			tab[x-1][y-1].setNoise(1);
-			if (y-2>0){tab[x][y-2].setNoise(1);}
+			tab[x][y-1].addNoise(2);
+			tab[x+1][y-1].addNoise(1);
+			tab[x-1][y-1].addNoise(1);
+			if ((y-2>=0)&&!(tab[x][y-1].equals(new Wall()))){tab[x][y-2].addNoise(1);}
 		}
 		
 	}
@@ -129,7 +125,7 @@ public class Player extends Entity{
 	 */
 	public boolean drop(String name, int gold){
 		Item delete=inventory.get(name);
-		if ((delete==null)&& (gold == 0)){return false;} 		// Test if the player have the item
+		if (delete==null){return false;} 		// Test if the player have the item
 		int tmp=this.getGold()-gold;
 		if (tmp<0){return false; }				// Test if the player have enough gold
 		this.setGold(tmp);
@@ -143,8 +139,8 @@ public class Player extends Entity{
 	 * @param tab	Rooms
 	 */
 	public void move(Room next, Room[][] tab){
-		setCurrentRoom(next);
 		resetNoise(tab);
+		setCurrentRoom(next);
 		addNoise(tab);
 	}
 	
