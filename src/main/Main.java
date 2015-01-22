@@ -297,6 +297,7 @@ public class Main {
         System.out.println("\n"+b+"\n"+"Score final : "+score);
         }
     
+    
     /**
      * Process the command entered by the user
      * 
