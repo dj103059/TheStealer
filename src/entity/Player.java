@@ -9,8 +9,6 @@ import java.util.HashMap;
  *
  */
 public class Player extends Entity{
-	// If the player can act
-	private boolean act=true;
 	// If the player is hidden
 	private boolean hidden=false;
 	// Inventory of the player
@@ -103,14 +101,13 @@ public class Player extends Entity{
 		
 	}
 	/**
-	 * Add a item/gold ti the player inventory
+	 * Add a item/gold to the player inventory
 	 * 
 	 * @param i		Item you want to add in the player inventory
 	 * @param gold	Amount of gold you want to add to the player
 	 * @return		False if he can't carry this weight
 	 */
 	public boolean add(Item i, int gold){
-		if (!act){return false;}
 		int tmp=calculateWeight(i, gold, true);
 		if (tmp<=maxWeight){
 			if (i!=null){inventory.put(i+"",i);}
@@ -131,10 +128,11 @@ public class Player extends Entity{
 	 * @return 		True if he did it
 	 */
 	public boolean drop(String name, int gold){
-		if (!act){return false;}
 		Item delete=inventory.get(name);
-		if (delete==null){return false;}
-		this.setGold(this.getGold() - gold);
+		if (delete==null){return false;} 		// Test if the player have the item
+		int tmp=this.getGold()-gold;
+		if (tmp<0){return false; }				// Test if the player have enough gold
+		this.setGold(tmp);
 		weight=calculateWeight(delete,gold, false);
 		inventory.remove(name);
 		return true;
@@ -155,13 +153,13 @@ public class Player extends Entity{
 	public int getWeight(){return weight;}
 	public int getMaxWeight(){return maxWeight;}
 	public HashMap<String, Item> getInventory(){return inventory;}
+	public int getGold() {return gold;}
 	public Item getItem(String name){return inventory.get(name);}
 	
 	// Setters
-	public void hide(Room[][] tab){hidden=true; act=false; resetNoise(tab);}
-	public void show(Room[][] tab){hidden=false; act=true; addNoise(tab);}
-	public void freeze(){act=false;}
-	public void unFreeze(){act=true;}
+	public void hide(Room[][] tab){hidden=true; resetNoise(tab);}
+	public void show(Room[][] tab){hidden=false; addNoise(tab);}
+	public void setGold(int gold) {this.gold = gold;}
 	
 	// Equals override
 	@Override
@@ -176,13 +174,5 @@ public class Player extends Entity{
 			}
 		}
 		return false;
-	}
-
-	public int getGold() {
-		return gold;
-	}
-
-	public void setGold(int gold) {
-		this.gold = gold;
 	}
 }

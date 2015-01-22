@@ -22,6 +22,10 @@ public abstract class Entity {
 	public Room getCurrentRoom(){return currentRoom;}
 	public String getName(){return name;}
 	
+	// Setters
+	public void setCurrentRoom(Room currentRoom) {this.currentRoom = currentRoom;}
+	public void setName(String name) {this.name = name;}
+	
 	// Equals override
 	@Override
 	public boolean equals(Object obj){
@@ -36,10 +40,4 @@ public abstract class Entity {
 	// toString Override
 	@Override
 	public String toString(){return this.getName();}
-	public void setCurrentRoom(Room currentRoom) {
-		this.currentRoom = currentRoom;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 }
