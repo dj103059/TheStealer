@@ -48,19 +48,19 @@ public class Player extends Entity{
 	public void resetNoise(Room[][] tab){
 		int x=getCurrentRoom().getX();
 		int y= getCurrentRoom().getY();
-		tab[x][y].setNoise(0);
-		tab[x+1][y].setNoise(0);
-		tab[x-1][y].setNoise(0);
-		tab[x][y+1].setNoise(0);
-		tab[x][y-1].setNoise(0);
-		tab[x+1][y+1].setNoise(0);
-		tab[x-1][y-1].setNoise(0);
-		tab[x-1][y+1].setNoise(0);
-		tab[x+1][y-1].setNoise(0);
-		if (x+2<=tab.length-2){tab[x+2][y].setNoise(0);}
-		if (x-2>=0){tab[x-2][y].setNoise(0);}
-		if (y+2<=tab.length-2){tab[x][y+2].setNoise(0);}
-		if (y-2>=0){tab[x][y-2].setNoise(0);}
+		tab[x][y].addNoise(-3);
+		tab[x+1][y].addNoise(-2);
+		tab[x-1][y].addNoise(-2);
+		tab[x][y+1].addNoise(-2);
+		tab[x][y-1].addNoise(-2);
+		tab[x+1][y+1].addNoise(-1);
+		tab[x-1][y-1].addNoise(-1);
+		tab[x-1][y+1].addNoise(-1);
+		tab[x+1][y-1].addNoise(-1);
+		if (x+2<=tab.length-2){tab[x+2][y].addNoise(-1);}
+		if (x-2>=0){tab[x-2][y].addNoise(-1);}
+		if (y+2<=tab.length-2){tab[x][y+2].addNoise(-1);}
+		if (y-2>=0){tab[x][y-2].addNoise(-1);}
 	}
 	/**
 	 * Add noise to the rooms
@@ -70,30 +70,18 @@ public class Player extends Entity{
 		int x=getCurrentRoom().getX();
 		int y= getCurrentRoom().getY();
 		tab[x][y].addNoise(3);
-		if (!tab[x+1][y].equals(new Wall())){
-			tab[x+1][y].addNoise(2);
-			tab[x+1][y+1].addNoise(1);
-			tab[x+1][y-1].addNoise(1);
-			if ((x+2<=tab.length-1)&&!(tab[x+1][y].equals(new Wall()))){tab[x+2][y].addNoise(1);}
-		}
-		if (!tab[x-1][y].equals(new Wall())){
-			tab[x-1][y].addNoise(2);
-			tab[x-1][y+1].addNoise(1);
-			tab[x-1][y-1].addNoise(1);
-			if ((x-2>=0)&&!(tab[x-1][y].equals(new Wall()))){tab[x-2][y].addNoise(1);}
-		}
-		if (!tab[x][y+1].equals(new Wall())){
-			tab[x][y+1].addNoise(2);
-			tab[x+1][y+1].addNoise(1);
-			tab[x-1][y+1].addNoise(1);
-			if ((y+2<=tab.length-1)&&!(tab[x][y+1].equals(new Wall()))){tab[x][y+2].addNoise(1);}
-		}
-		if (!tab[x][y-1].equals(new Wall())){
-			tab[x][y-1].addNoise(2);
-			tab[x+1][y-1].addNoise(1);
-			tab[x-1][y-1].addNoise(1);
-			if ((y-2>=0)&&!(tab[x][y-1].equals(new Wall()))){tab[x][y-2].addNoise(1);}
-		}
+		tab[x+1][y].addNoise(2);
+		tab[x-1][y].addNoise(2);
+		tab[x][y+1].addNoise(2);
+		tab[x][y-1].addNoise(2);
+		tab[x+1][y-1].addNoise(1);
+		tab[x+1][y+1].addNoise(1);
+		tab[x-1][y-1].addNoise(1);
+		tab[x-1][y+1].addNoise(1);
+		if (!tab[x+1][y].equals(new Wall())){tab [x+2][y].addNoise(1);}
+		if (!tab[x-1][y].equals(new Wall())){tab [x-2][y].addNoise(1);}
+		if (!tab[x][y+1].equals(new Wall())){tab [x][y+2].addNoise(1);}
+		if (!tab[x][y-1].equals(new Wall())){tab [x][y-2].addNoise(1);}
 		
 	}
 	/**
