@@ -16,7 +16,7 @@ public class Player extends Entity{
 	// His current gold
 	private int gold=0;
 	// Weight of the gold weight
-	private int goldWeight=0;
+	private int goldWeight=4;
 	// Weight of what he is carrying
 	private int weight=0;
 	// Maximum weight he can carry
