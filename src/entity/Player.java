@@ -144,7 +144,6 @@ public class Player extends Entity{
 	 */
 	public void move(Room next, Room[][] tab){
 		resetNoise(tab);
-		setCurrentRoom(next);
 		addNoise(tab);
 	}
 	
