@@ -208,7 +208,7 @@ public class Main {
             break;
         case 'G':
             //gold room
-            bankMap[x][y]=new RoomGold("RoomGold"+x+"-"+y,"pass-G");
+            bankMap[x][y]=new RoomGold("RoomGold"+x+"-"+y,"pass-G",300);
             break;
         case 'E':
             bankMap[x][y]=new Room("entry"+x+"-"+y,"Awesome Entry");
@@ -318,7 +318,7 @@ public class Main {
      * @param str
      *              the String we want to print
      */
-    private void printer(String str){
+    public void printer(String str){
         System.out.println(str);
     }
     

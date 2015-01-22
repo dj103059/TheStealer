@@ -73,5 +73,16 @@ public class RoomGold extends RoomPass{
 		return l;
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		if(this==obj){
+			return true;
+		}
+		if(obj instanceof RoomGold){
+			return true;
+			
+		}
+		return false;
+	}
 	
 }

@@ -129,7 +129,7 @@ public class Player extends Entity{
 	 */
 	public boolean drop(String name, int gold){
 		Item delete=inventory.get(name);
-		if (delete==null){return false;} 		// Test if the player have the item
+		if ((delete==null)&& (gold == 0)){return false;} 		// Test if the player have the item
 		int tmp=this.getGold()-gold;
 		if (tmp<0){return false; }				// Test if the player have enough gold
 		this.setGold(tmp);

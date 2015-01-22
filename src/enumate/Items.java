@@ -1,7 +1,5 @@
 package enumate;
 
-
-
 import java.util.HashMap;
 
 public class Items {
@@ -26,7 +24,7 @@ public class Items {
          *          The word to look up.
          * @return The EnumItem corresponding, UNKNOWN if it doesn't exist
          */
-        public EnumItem getCommandWord(String it){
+        public EnumItem getItem(String it){
             EnumItem item = correctItems.get(it);
             if(item != null) {
                 return item;
@@ -39,7 +37,7 @@ public class Items {
         /**
          * Check if the String matches a ItemName 
          * @param aString
-         *              a String which can correspond to a CommandWord
+         *              a String which can correspond to an EnumItem
          * @return true if it matches, false otherwise.
          */
         public boolean isItem(String aString)
