@@ -35,12 +35,13 @@ public class Drop extends Command{
             RoomGold goldRoom=(RoomGold) currentRoom;
             int gold = getGold(main);
         
-            //verify if he can drio this amount of gold
+            //verify if he can drop this amount of gold
             if(hero.getGold()<gold){
                 return "You haven't this amount of gold on you.";
             }
             hero.drop(null,gold);
-            goldRoom.setGold(gold+goldRoom.getGold());;
+            goldRoom.setGold(gold+goldRoom.getGold());
+            main.actGuards();
             return "You drop "+gold+" gold";
         }
         Item it = hero.getItem(itemToDrop);
@@ -49,6 +50,7 @@ public class Drop extends Command{
         }
         hero.drop(itemToDrop,0);
         hero.getCurrentRoom().addItem(it);
+        main.actGuards();
         return itemToDrop+" has been dropped on the floor.";
     }
     

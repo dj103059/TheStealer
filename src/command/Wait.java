@@ -9,6 +9,7 @@ public class Wait extends Command {
      */
     @Override
     public String act(String secondWord, Main main) {
+        main.actGuards();
         return "You wait here.";
     }
 

@@ -38,6 +38,7 @@ public class Take extends Command{
                 return "You are too heavy, you can't take this amount of gold";
             }
             goldRoom.setGold(goldRoom.getGold()-gold);
+            main.actGuards();
             return "You take "+gold+" gold";
         }
         //otherwise he wants to take an item
@@ -49,6 +50,7 @@ public class Take extends Command{
         hero.add(it,0);
         //we remove it from the current room
         currentRoom.removeItem(it);
+        main.actGuards();
         return itemToTake+" has been took on the floor.";
     }
     

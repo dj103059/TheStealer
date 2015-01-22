@@ -34,7 +34,8 @@ public class Main {
     private List<Guards> listGuards;
     //the parser
     private Parser parser;
-    
+    //the score
+    private int score;
     //======================================================================
     
     /**
@@ -46,7 +47,7 @@ public class Main {
     	time = new Timer(900);
         //initialize the parser
         parser=new Parser();
-        
+        score=0;
         coordinate=new int[2];
         //the map has the same size that the user want
         bankMap=new Room[length][width];
@@ -139,8 +140,7 @@ public class Main {
             buff = new BufferedReader(new FileReader(path+"/Map.txt"));
             try{
                 char charac=(char)buff.read();
-                while(true){
-                	
+                while(true){ 	
                     addRoomToMap(charac,x,y,buff);
                     x++;
                     if(x>maxLine-2){
@@ -267,35 +267,14 @@ public class Main {
      * Launch the game
      */
     public void play(){
-        //while finished is false, the game continues
-        //if it's the end, finished is true
-        boolean finished=false;
-        String b="";
-        int score=0;
-        while(!finished){
+        //parse what the user writes and process a command in function of this
+        while(true){
             CommandLine cmd=parser.getCommand();
-            finished=processCommand(cmd);
-            String a="";
-            a=endTurn();
-            
-            b=a;
-            //condition for game over
-            if(a.equals("Game over")||a.equals("Win")){
-            	
-                score =hero.getGold();
-            	finished =true;
-            	}else{
-            		System.out.println("Fin du tour");
-            	}
-            }
-        if(b.equals("Game over"))
-        		{
-        			score=score/10;
-        		}else{
-        			score += time.getTimer();
-        		}
-        System.out.println("\n"+b+"\n"+"Score final : "+score);
+            score=time.getTimer();
+            processCommand(cmd);
+            endTurn();
         }
+    }
     
     /**
      * Process the command entered by the user
@@ -305,9 +284,6 @@ public class Main {
      */
     private boolean processCommand(CommandLine cmd){
         Command command = cmd.getCommandWord().getCommand();
-        if(command.equals(new End())){
-            return true;
-        }
         String action=command.act(cmd.getSecondWord(),this);
         printer(action);
         return false;
@@ -323,29 +299,53 @@ public class Main {
     }
     
     /**
-     * Process the end of a turn
+     * All the guards acts when we call this method
      */
-    private String endTurn(){
-    	if (time.decrementTime(5)==false)
-    	{
-    		return "Game over";
-    	}
-    	for(int i = 0;i<listGuards.size();i++){
-    		if(listGuards.get(i).act(hero, bankMap)){
-    			return "Game over";
-    		}
-    	}
-    	if (win())
-    	{
-    		return "Win";
-    	}
-
-
-    		return "Fin du tour";
+    public void actGuards(){
+        //TODO remove
+        System.out.println("guards acts");
+        for(int i = 0;i<listGuards.size();i++){
+            if(listGuards.get(i).act(hero, bankMap)){
+                gameOver();
+            }
+        }
     }
     
+    /**
+     * Process the end of a turn
+     */
+    private void endTurn(){
+        if (time.decrementTime(5)==false)
+        {
+            gameOver();
+        }
+    	if (win())
+    	{
+    		winGame();
+    	}
+    }
+    
+    /**
+     * method to call when you win the game
+     */
+    public void gameOver(){
+        score+=hero.getGold();
+        score=score/10;
+        printer("Game over : \nScore : "+score);
+        System.exit(0);
+    }
+    
+    /**
+     * Method to call when you win the game
+     */
+    public void winGame(){
+        score +=hero.getGold();
+        printer("You win the game. \nScore : "+score);
+        System.exit(0);
+    }
     
     //=================================================================
+    
     /**
      * Get the bankMap
      * @return the bankMap

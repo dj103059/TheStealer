@@ -13,8 +13,8 @@ public class End extends Command {
      */
     @Override
     public String act(String secondWord, Main main) {
-        //DO NOTHING
-        return null;
+        main.gameOver();
+        return "You quit";
     }
     
     /**

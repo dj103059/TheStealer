@@ -19,6 +19,7 @@ public class Hide extends Command{
         HashMap<String,Item> roomInventory = hero.getCurrentRoom().getListofitem();
         if(roomInventory.containsKey(EnumItem.BOX.toString())){
             hero.hide(main.getBankMap());
+            main.actGuards();
             return "You are hiding under a box.";
         }
         return "You can't hide here, there isn't any box.";
