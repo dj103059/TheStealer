@@ -169,9 +169,12 @@ public class Player extends Entity{
 		if (this==obj){return true;}
 		else if (obj instanceof Player){
 			Player tmp=(Player) obj;
-			if (this.getInventory()==tmp.getInventory()){
+			if (this.getInventory().equals(tmp.getInventory())){
 				if (this.getWeight()==tmp.getWeight()){
-					if (this.getMaxWeight()==tmp.getMaxWeight()){return true;}
+					if (this.getMaxWeight()==tmp.getMaxWeight()){
+						if(this.getName().equals(tmp.getName())){
+							return true;}
+						}
 				}
 			}
 		}

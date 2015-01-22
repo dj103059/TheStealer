@@ -28,7 +28,10 @@ public abstract class Entity {
 		if (this==obj){return true;}
 		else if (obj instanceof Entity){
 			Entity tmp=(Entity)obj;
-			if (this.getCurrentRoom()==tmp.getCurrentRoom()){return true;}
+			if (this.getCurrentRoom().equals(tmp.getCurrentRoom())){
+				if(this.getName().equals(tmp.getName())){
+					return true;}
+				}
 		}
 		return false;
 	}

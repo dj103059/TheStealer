@@ -24,12 +24,12 @@ public class Main {
     
     //the player
     private Player hero;
-    private MovingGuards movingguard;
     //the current coordinate of the character : table with x and y
     private int[] coordinate;
     //the current room where the character is
     private Room currentRoom;
-    
+    private int[] finishRoom;
+    Timer time;
     //the list of guards
     private List<Guards> listGuards;
     //the parser
@@ -43,7 +43,7 @@ public class Main {
      * @param width
      */
     public Main(int length, int width){
-    	Timer time = new Timer(300);
+    	time = new Timer(900);
         //initialize the parser
         parser=new Parser();
         
@@ -55,21 +55,31 @@ public class Main {
         listGuards=new ArrayList<Guards>();
         //the hero has a weight limit of 100
         iniMap();
-        //he begins in (x,y)
-        hero = new Player(currentRoom,100,"hero");
-        currentRoom.addEntity(hero);
-        hero.init(map);
-        //hero.init(clock);
         for(int i=0;i<bankMap.length;i++){
             for(int j=0;j<bankMap[0].length;j++){
                 if(bankMap[i][j]==null){
-                    //TODO remove le bitch
-                    System.out.println("i : "+i+"\nj :"+j);
-                    throw new RuntimeException("BITCHJ");
+                    
+                    throw new RuntimeException("error");
                 }
             }
         }
+        initExit();
+        //he begins in (x,y)
+        hero = new Player(currentRoom,100,"hero");
+        //currentRoom.addEntity(hero);
+        hero.init(map);
+        hero.init(clock);
         
+    }
+    
+ /*
+  * the Win method
+  */
+    public boolean win()
+    {
+    	if ((bankMap[finishRoom[0]][finishRoom[1]].containsEntity(hero))&&(hero.getGold()>=0))
+    		return true;
+    	return false;
     }
     
     /**
@@ -109,27 +119,42 @@ public class Main {
             bankMap[maxColumn-1][j].setX(maxLine-1);
             bankMap[maxColumn-1][j].setY(j);
     	}
+    	List<Character> correctChara = new ArrayList<Character>();
+    	correctChara.add('P');
+    	correctChara.add('K');
+    	correctChara.add('B');
+    	correctChara.add('I');
+    	correctChara.add('R');
+    	correctChara.add('W');
+    	correctChara.add('G');
+    	correctChara.add('C');
+    	correctChara.add('E');
+    	correctChara.add('M');
         BufferedReader buff;
         int x=1;
         int y=1;
         try{
             //we open the text file in reading mode
-            buff = new BufferedReader(new FileReader("Map.txt"));
+        	String path = System.getProperty("user.dir");
+            buff = new BufferedReader(new FileReader(path+"/Map.txt"));
             try{
                 char charac=(char)buff.read();
                 while(true){
+                	
                     addRoomToMap(charac,x,y,buff);
                     x++;
-                    charac=(char)buff.read();
                     if(x>maxLine-2){
                         x=1;
                         y++;
-                        if(charac=='\n'){
-                            charac=(char)buff.read();
-                        }
+                        
                         if(y>maxColumn-2){
                             break;
                         }
+                    }
+                    charac=(char)buff.read();
+                    while(!correctChara.contains(charac)){
+                    	
+                        charac=(char)buff.read();
                     }
                 }
             }finally{
@@ -139,33 +164,25 @@ public class Main {
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
-    	/*
+    }
+    public void initExit(){
+    	Room wall=new Wall();
     	for(int i=1;i<bankMap.length-1;i++){
             for(int j=1;j<bankMap[0].length-1;j++){
-                bankMap[i][j]=new Room("room"+i+"-"+j,"best room ever");
-                bankMap[i][j].setX(i);
-                bankMap[i][j].setY(j);
+            	if(!bankMap[i][j+1].equals(wall)){
+            		bankMap[i][j].setExit("south", bankMap[i][j+1]);
+            	}
+            	if(!bankMap[i+1][j].equals(wall)){
+            		bankMap[i][j].setExit("east", bankMap[i+1][j]);
+            	}
+            	if(!bankMap[i-1][j].equals(wall)){
+            		bankMap[i][j].setExit("west", bankMap[i-1][j]);
+            	}
+            	if(!bankMap[i][j-1].equals(wall)){
+            		bankMap[i][j].setExit("north", bankMap[i][j-1]);
+            	}
             }
         }
-        //add the left room
-        for(int i=2;i<bankMap.length-1;i++){
-            for(int j=1;j<bankMap[0].length-1;j++){
-                bankMap[i][j].setExit("left", bankMap[i-1][j]);
-            }
-        }
-        for(int i=1;i<bankMap.length-2;i++){
-            for(int j=1;j<bankMap[0].length-1;j++){
-                bankMap[i][j].setExit("right", bankMap[i+1][j]);
-            }
-        }
-        for(int i=1;i<bankMap.length-1;i++){
-            for(int j=2;j<bankMap[0].length-1;j++){
-                bankMap[i][j].setExit("north",bankMap[i][j-1]);
-            }
-            for(int j=1;j<bankMap[0].length-2;j++){
-                bankMap[i][j].setExit("south", bankMap[i][j+1]);
-            }
-        }*/
     }
     
     /**
@@ -196,6 +213,9 @@ public class Main {
         case 'E':
             bankMap[x][y]=new Room("entry"+x+"-"+y,"Awesome Entry");
             //the hero will be here
+            finishRoom=new int[2];
+            finishRoom[0]=x;
+            finishRoom[1]=y;
             coordinate[0]=x;
             coordinate[1]=y;
             currentRoom=bankMap[x][y];
@@ -214,7 +234,7 @@ public class Main {
             bankMap[x][y]=new Room("room"+x+"-"+y,"Awesome room with a stationary guard");
             bankMap[x][y].setX(x);
             bankMap[x][y].setY(y);
-            Guards guard=new Guards(bankMap[x][y], false, true, "gégé");
+            Guards guard=new Guards(bankMap[x][y], false, true, "Guard"+y);
             listGuards.add(guard);
             bankMap[x][y].addEntity(guard);
             break;
@@ -222,7 +242,7 @@ public class Main {
             bankMap[x][y]=new Room("room"+x+"-"+y,"Awesome room with a mobile guard at the beginning");
             bankMap[x][y].setX(x);
             bankMap[x][y].setY(y);
-            Guards guardMobile=new MovingGuards(bankMap[x][y], false, true, "dédé");
+            Guards guardMobile=new MovingGuards(bankMap[x][y], false, true, "Guard"+x);
             listGuards.add(guardMobile);
             bankMap[x][y].addEntity(guardMobile);
             break;
@@ -250,20 +270,32 @@ public class Main {
         //while finished is false, the game continues
         //if it's the end, finished is true
         boolean finished=false;
-        
+        String b="";
+        int score=0;
         while(!finished){
             CommandLine cmd=parser.getCommand();
             finished=processCommand(cmd);
-            for(Guards g : listGuards){
-                if(g.act(hero,bankMap)){
-            	    finished=true;
-            	    System.out.println("touché");
-                }
+            String a="";
+            a=endTurn();
+            
+            b=a;
+            //condition for game over
+            if(a.equals("Game over")||a.equals("Win")){
+            	
+                score =hero.getGold();
+            	finished =true;
+            	}else{
+            		System.out.println("Fin du tour");
+            	}
             }
-            endTurn();
+        if(b.equals("Game over"))
+        		{
+        			score=score/10;
+        		}else{
+        			score += time.getTimer();
+        		}
+        System.out.println("\n"+b+"\n"+"Score final : "+score);
         }
-        System.out.println("tu es vu, game over ");
-    }
     
     /**
      * Process the command entered by the user
@@ -293,9 +325,25 @@ public class Main {
     /**
      * Process the end of a turn
      */
-    private void endTurn(){
-        System.out.println("x : "+coordinate[0] + "\ny : "+coordinate[1]);
+    private String endTurn(){
+    	if (time.decrementTime(5)==false)
+    	{
+    		return "Game over";
+    	}
+    	for(int i = 0;i<listGuards.size();i++){
+    		if(listGuards.get(i).act(hero, bankMap)){
+    			return "Game over";
+    		}
+    	}
+    	if (win())
+    	{
+    		return "Win";
+    	}
+
+
+    		return "Fin du tour";
     }
+    
     
     //=================================================================
     /**
