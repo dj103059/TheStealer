@@ -33,7 +33,7 @@ public class Guards extends Entity{
 			boolean east=tab[x-1][y].isPlayer();
 			boolean west=tab[x+1][y].isPlayer();
 			boolean current=tab[x][y].isPlayer();
-			if (north||south||east||west||current){return true&&!isBribed()&&!p.isHidden();}	// If he see the player and manage if the guard is bribed
+			if (north||south||east||west||current){return true&&!isBribed()&&!(p.getHidden()>0);}	// If he see the player and manage if the guard is bribed
 		}
 		return false;
 	}

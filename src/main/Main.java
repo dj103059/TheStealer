@@ -269,6 +269,11 @@ public class Main {
     public void play(){
         //parse what the user writes and process a command in function of this
         while(true){
+            while(hero.getHidden()>0){
+                hero.decrementHide();
+                actGuards();
+                endTurn();
+            }
             CommandLine cmd=parser.getCommand();
             score=time.getTimer();
             processCommand(cmd);

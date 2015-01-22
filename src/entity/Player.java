@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class Player extends Entity{
 	// If the player is hidden
-	private boolean hidden=false;
+	private int hidden;
 	// Inventory of the player
 	private HashMap<String, Item> inventory=new HashMap<String, Item>();
 	// His current gold
@@ -23,7 +23,7 @@ public class Player extends Entity{
 	private int maxWeight;
 	
 	// Constructor
-	public Player(Room currentRoom, int maxWeight, String name){this.maxWeight=maxWeight;this.setName(name);this.setCurrentRoom(currentRoom);}
+	public Player(Room currentRoom, int maxWeight, String name){this.maxWeight=maxWeight;this.setName(name);this.setCurrentRoom(currentRoom);hidden=0;}
 	
 	// Methods
 	/**
@@ -45,45 +45,44 @@ public class Player extends Entity{
 	 * Reinitialize the noise 
 	 * @param tab Rooms
 	 */
-	public void resetNoise(Room[][] tab){
-		int x=getCurrentRoom().getX();
-		int y= getCurrentRoom().getY();
-		tab[x][y].addNoise(-3);
-		tab[x+1][y].addNoise(-2);
-		tab[x-1][y].addNoise(-2);
-		tab[x][y+1].addNoise(-2);
-		tab[x][y-1].addNoise(-2);
-		tab[x+1][y+1].addNoise(-1);
-		tab[x-1][y-1].addNoise(-1);
-		tab[x-1][y+1].addNoise(-1);
-		tab[x+1][y-1].addNoise(-1);
-		if (x+2<=tab.length-2){tab[x+2][y].addNoise(-1);}
-		if (x-2>=0){tab[x-2][y].addNoise(-1);}
-		if (y+2<=tab.length-2){tab[x][y+2].addNoise(-1);}
-		if (y-2>=0){tab[x][y-2].addNoise(-1);}
-	}
-	/**
-	 * Add noise to the rooms
-	 * @param tab Rooms
-	 */
-	public void addNoise(Room[][] tab){
-		int x=getCurrentRoom().getX();
-		int y= getCurrentRoom().getY();
-		tab[x][y].addNoise(3);
-		tab[x+1][y].addNoise(2);
-		tab[x-1][y].addNoise(2);
-		tab[x][y+1].addNoise(2);
-		tab[x][y-1].addNoise(2);
-		tab[x+1][y-1].addNoise(1);
-		tab[x+1][y+1].addNoise(1);
-		tab[x-1][y-1].addNoise(1);
-		tab[x-1][y+1].addNoise(1);
-		if (!tab[x+1][y].equals(new Wall())){tab [x+2][y].addNoise(1);}
-		if (!tab[x-1][y].equals(new Wall())){tab [x-2][y].addNoise(1);}
-		if (!tab[x][y+1].equals(new Wall())){tab [x][y+2].addNoise(1);}
-		if (!tab[x][y-1].equals(new Wall())){tab [x][y-2].addNoise(1);}
-		
-	}
+    public void resetNoise(Room[][] tab){
+        int x=getCurrentRoom().getX();
+        int y= getCurrentRoom().getY();
+        tab[x][y].addNoise(-3);
+        tab[x+1][y].addNoise(-2);
+        tab[x-1][y].addNoise(-2);
+        tab[x][y+1].addNoise(-2);
+        tab[x][y-1].addNoise(-2);
+        tab[x+1][y+1].addNoise(-1);
+        tab[x-1][y-1].addNoise(-1);
+        tab[x-1][y+1].addNoise(-1);
+        tab[x+1][y-1].addNoise(-1);
+        if (x+2<=tab.length-2){tab[x+2][y].addNoise(-1);}
+        if (x-2>=0){tab[x-2][y].addNoise(-1);}
+        if (y+2<=tab.length-2){tab[x][y+2].addNoise(-1);}
+        if (y-2>=0){tab[x][y-2].addNoise(-1);}
+    }/**
+     * Add noise to the rooms
+     * @param tab Rooms
+     */
+    public void addNoise(Room[][] tab){
+        int x=getCurrentRoom().getX();
+        int y= getCurrentRoom().getY();
+        tab[x][y].addNoise(3);
+        tab[x+1][y].addNoise(2);
+        tab[x-1][y].addNoise(2);
+        tab[x][y+1].addNoise(2);
+        tab[x][y-1].addNoise(2);
+        tab[x+1][y-1].addNoise(1);
+        tab[x+1][y+1].addNoise(1);
+        tab[x-1][y-1].addNoise(1);
+        tab[x-1][y+1].addNoise(1);
+        if (!tab[x+1][y].equals(new Wall())){tab [x+2][y].addNoise(1);}
+        if (!tab[x-1][y].equals(new Wall())){tab [x-2][y].addNoise(1);}
+        if (!tab[x][y+1].equals(new Wall())){tab [x][y+2].addNoise(1);}
+        if (!tab[x][y-1].equals(new Wall())){tab [x][y-2].addNoise(1);}
+        
+    }
 	/**
 	 * Add a item/gold to the player inventory
 	 * 
@@ -113,7 +112,7 @@ public class Player extends Entity{
 	 */
 	public boolean drop(String name, int gold){
 		Item delete=inventory.get(name);
-		if (delete==null){return false;} 		// Test if the player have the item
+		if ((delete==null)&& (gold == 0)){return false;} 		// Test if the player have the item
 		int tmp=this.getGold()-gold;
 		if (tmp<0){return false; }				// Test if the player have enough gold
 		this.setGold(tmp);
@@ -127,24 +126,28 @@ public class Player extends Entity{
 	 * @param tab	Rooms
 	 */
 	public void move(Room next, Room[][] tab){
-		resetNoise(tab);
 		setCurrentRoom(next);
+		resetNoise(tab);
 		addNoise(tab);
 	}
 	
 	// Getters
-	public boolean isHidden(){return hidden;}
 	public int getWeight(){return weight;}
 	public int getMaxWeight(){return maxWeight;}
 	public HashMap<String, Item> getInventory(){return inventory;}
 	public int getGold() {return gold;}
 	public Item getItem(String name){return inventory.get(name);}
-	
+    public int getHidden(){
+        return hidden;
+    }	
 	// Setters
-	public void hide(Room[][] tab){hidden=true; resetNoise(tab);}
-	public void show(Room[][] tab){hidden=false; addNoise(tab);}
+	public void hide(Room[][] tab){hidden=4; resetNoise(tab);}
+	public void show(Room[][] tab){hidden=0; addNoise(tab);}
 	public void setGold(int gold) {this.gold = gold;}
-	
+	public void decrementHide(){
+	    hidden--;
+	}
+
 	// Equals override
 	@Override
 	public boolean equals(Object obj){
