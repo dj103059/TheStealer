@@ -1,6 +1,5 @@
 package room;
 
-
 /**
  * The treasure room
  *
@@ -65,6 +64,13 @@ public class RoomGold extends RoomPass{
 	public int getGold()
 	{
 		return gold;
+	}
+	
+	public String printItem()
+	{
+		String l=super.printItem();
+		l+="There is "+this.getGold()+" gold in the room.";
+		return l;
 	}
 	
 	
