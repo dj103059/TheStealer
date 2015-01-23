@@ -17,6 +17,10 @@ import timer.Timer;
 import item.*;
 import item.Map;
 
+/**
+ * Simulator of the game
+ *
+ */
 public class Simulator {
     //the map
     private Room[][] bankMap;
@@ -48,6 +52,7 @@ public class Simulator {
      * @param width
      */
     public Simulator(int length, int width){
+        //initialize time and score and coordinate
         time = new Timer(900);
         score=0;
         coordinate=new int[2];
@@ -55,11 +60,13 @@ public class Simulator {
         bankMap=new Room[length][width];
         Map map = new Map(bankMap);
         Clock clock = new Clock(time);
+        //initialize the list of guards and baits
         listGuards=new ArrayList<Guards>();
         listBaits=new ArrayList<Bait>();
-        //the hero has a weight limit of 100
+        //add the rooms from the map.txt file
         iniMap();
         loadMap();
+        //check if all the bankMap is complete (without any void room)
         for(int i=0;i<bankMap.length;i++){
             for(int j=0;j<bankMap[0].length;j++){
                 if(bankMap[i][j]==null){
@@ -67,10 +74,11 @@ public class Simulator {
                 }
             }
         }
+        //initialize the exits of each rooms
         initExit();
         //he begins in (x,y)
         hero = new Player(currentRoom,100,"hero");
-        //currentRoom.addEntity(hero);
+        currentRoom.addEntity(hero);
         hero.init(map);
         hero.init(clock);
         
@@ -154,7 +162,9 @@ public class Simulator {
                 buff.close();
             }
         }catch(IOException e){
+            //in case of an I/O error, we exit
             System.out.println(e.getMessage());
+            System.exit(0);
         }
     }
     
@@ -192,6 +202,7 @@ public class Simulator {
      */
     private void addRoomToMap(char charac,int x,int y,BufferedReader buff) throws IOException{
         boolean originalRoom=false;
+        //we search if the character represents an original room
         switch(charac){
         case 'W':
             //wall
@@ -220,9 +231,11 @@ public class Simulator {
             //if not one of the previous case, we have a normal room with something in it
             bankMap[x][y]=new Room("room"+x+"-"+y,"Awesome room");
         }
+        //we add the x and the y of the room
         bankMap[x][y].setX(x);
         bankMap[x][y].setY(y);
         if(originalRoom){
+            //if it was an original room, we can quit here
             return;
         }
         //here we determined what is in it
@@ -254,6 +267,7 @@ public class Simulator {
         case 'E':
             //the hero will be here
             finishRoom=new int[2];
+            //we put the right coordinate for thhe beginning
             finishRoom[0]=x;
             finishRoom[1]=y;
             coordinate[0]=x;
@@ -275,15 +289,19 @@ public class Simulator {
         Room wall=new Wall();
         for(int i=1;i<bankMap.length-1;i++){
             for(int j=1;j<bankMap[0].length-1;j++){
+                //south exit
                 if(!bankMap[i][j+1].equals(wall)){
                     bankMap[i][j].setExit("south", bankMap[i][j+1]);
                 }
+                //east exit
                 if(!bankMap[i+1][j].equals(wall)){
                     bankMap[i][j].setExit("east", bankMap[i+1][j]);
                 }
+                //west exit
                 if(!bankMap[i-1][j].equals(wall)){
                     bankMap[i][j].setExit("west", bankMap[i-1][j]);
                 }
+                //north exit
                 if(!bankMap[i][j-1].equals(wall)){
                     bankMap[i][j].setExit("north", bankMap[i][j-1]);
                 }
@@ -300,13 +318,13 @@ public class Simulator {
      */
     public String play(CommandLine cmd){
         String state="";
-        //parse what the user writes and process a command in function of this
+        score=time.getTimer();
+        state+=processCommand(cmd);
+        //while the hero is hidden, the hero can't do anything
         while(hero.getHidden()>0){
             hero.decrementHide();
             state+=endTurn();
         }
-        score=time.getTimer();
-        state+=processCommand(cmd);
         return state;
     }
     
@@ -318,21 +336,27 @@ public class Simulator {
      * @return the action which was performed with this command
      */
     private String processCommand(CommandLine cmd){
+        //get the command from cmd
         Command command = cmd.getCommandWord().getCommand();
+        //execute the command
         String action=command.act(cmd.getSecondWord(),this);
         return action;
     }
     
     /**
      * All the guards acts when we call this method
+     * @return a String which say game over if you have been saw
      */
-    public void actGuards(){
+    public String actGuards(){
+        //each guard will act
         for(int i = 0;i<listGuards.size();i++){
+            //if the hero has been seen
             if(listGuards.get(i).act(hero, bankMap)){
                 setGameOver(true);
-                break;
+                return "You have been saw by a guard!";
             }
         }
+        return "";
     }
     
     /**
@@ -340,23 +364,32 @@ public class Simulator {
      * @return what happens during the end of the turn
      */
     public String endTurn(){
-        String end = "End turn";
-        actGuards();
+        String end = "End turn\n";
+        //the guards acts
+        end+=actGuards();
         List<Bait> baitToRemove=new ArrayList<Bait>();
+        //the baits acts
         for(Bait bait : listBaits){
             if(actBaits(bait)){
+                //if they can't act anymore, we say we want to remove it
                 baitToRemove.add(bait);
             }
         }
+        //we remove all the baits that can't act anymore
         for(Bait bait : baitToRemove){
             System.out.println(listBaits.remove(bait));
         }
+        //decrement the time
         if (time.decrementTime(5)==false)
         {
+            //if we reach 0, game over
             setGameOver(true);
+            end+="\nNo more time! Try again!";
         }
+        //if we win
         if (win())
         {
+            //we set win at true
             setWin(true);
         }
         return end;
@@ -434,7 +467,8 @@ public class Simulator {
 
     
     //=================================================================
-    
+    //get and set
+       
     /**
      * Get the bankMap
      * @return the bankMap
