@@ -9,7 +9,7 @@ import main.Simulator;
 
 /**
  * Move command of the game. We use it as "go east" or west, north, south.
- * @author user
+ * @author Tom Dall'Agnol
  *
  */
 public class Go extends Command{
@@ -97,5 +97,13 @@ public class Go extends Command{
         }else{
             return EnumDirection.UNKNOWN;
         }
+    }
+    
+    /**
+     * 'go + direction'
+     */
+    @Override
+    public String help(){
+        return "Move in the map. Use : Type 'go theDirectionYouWantToGo'";
     }
 }

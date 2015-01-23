@@ -7,11 +7,17 @@ import item.Item;
 import entity.Player;
 import main.Simulator;
 
+/**
+ * Command to show the inventory of the player
+ * @author Tom Dall'Agnol
+ *
+ */
 public class Inventory extends Command {
 
     /**
      * Show the player's inventory
      */
+    @Override
     public String act(String secondWord, Simulator simul) {
         Player hero=simul.getHero();
         HashMap<String,Item> inventory=hero.getInventory();
@@ -26,5 +32,13 @@ public class Inventory extends Command {
             textInventory+=entry.getKey()+"  ";
         }
         return textInventory+"\n";
+    }
+    
+    /**
+     * 'inventory' to show the player's inventory
+     */
+    @Override
+    public String help(){
+        return"Show the player's inventory. Use : 'inventory'";
     }
 }

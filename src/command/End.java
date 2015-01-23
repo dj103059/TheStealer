@@ -3,7 +3,7 @@ import main.Simulator;
 
 /**
  * Permits to quit the game
- *
+ * @author Tom Dall'Agnol
  */
 public class End extends Command {
 
@@ -16,4 +16,11 @@ public class End extends Command {
         return "You quit\n";
     }
 
+    /**
+     * 'quit'
+     */
+    @Override
+    public String help(){
+        return "Quit the game. Use : Type : 'quit'";
+    }
 }

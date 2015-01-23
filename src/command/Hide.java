@@ -7,6 +7,11 @@ import entity.Player;
 import enumate.EnumItem;
 import main.Simulator;
 
+/**
+ * Command to hide yourself under a box if there is one in the room
+ * @author Tom Dall'Agnol
+ *
+ */
 public class Hide extends Command{
 
     /**
@@ -25,4 +30,11 @@ public class Hide extends Command{
         return "You can't hide here, there isn't any box.\n";
     }
 
+    /**
+     * 'hide' to hide under a box
+     */
+    @Override
+    public String help(){
+        return "Hide yourself in a room WITH A BOX. Use : Type 'hide' to hide yourself under it during 4 turns (Be carefull, guards keeps moving!)";
+    }
 }

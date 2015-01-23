@@ -9,6 +9,11 @@ import enumate.Items;
 import main.Main;
 import main.Simulator;
 
+/**
+ * Command to take an object in the current room.
+ * @author Tom Dall'Agnol
+ *
+ */
 public class Take extends Command{
 
     /**
@@ -49,6 +54,14 @@ public class Take extends Command{
         currentRoom.removeItem(it);
         String end = simul.endTurn();
         return itemToTake+" has been took on the floor.\n"+end;
+    }
+    
+    /**
+     * 'take + name of an object in the room'
+     */
+    @Override
+    public String help(){
+        return "Take an object which is in the current room. Use : Type 'take nameOfAnItem";
     }
     
 }

@@ -13,6 +13,7 @@ import main.Simulator;
  * The command to Drop an item or gold in the current room
  * We use it like that : "drop item" or "drop gold" and the amount of gold
  *
+ * @author Tom Dall'Agnol
  */
 public class Drop extends Command{
 
@@ -49,5 +50,13 @@ public class Drop extends Command{
         hero.getCurrentRoom().addItem(it);
         String end = simul.endTurn();
         return itemToDrop+" has been dropped on the floor.\n"+end;
+    }
+    
+    /**
+     * drop + the name of the item we want to drop is how we use this
+     */
+    @Override
+    public String help(){
+        return "Drop an item from your inventory. Use : Type 'drop nameOfTheItem'";
     }
 }

@@ -2,6 +2,11 @@ package command;
 
 import main.Simulator;
 
+/**
+ * Command to wait one turn in the current room
+ * @author Tom Dall'Agnol
+ *
+ */
 public class Wait extends Command {
 
     /**
@@ -13,4 +18,11 @@ public class Wait extends Command {
         return "You wait here.\n"+end;
     }
 
+    /**
+     * 'wait'
+     */
+    @Override
+    public String help(){
+        return "Wait in the current room during one turn. Use : Type 'wait'.";
+    }
 }
