@@ -38,4 +38,6 @@ public class Wall extends Room{
 	{
 	
 	}
+	@Override
+	public void addNoise(int noise){}
 }

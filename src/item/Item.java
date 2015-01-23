@@ -1,4 +1,7 @@
 package item;
+
+import main.Simulator;
+
 /**
  * Every item inherit of Item class
  **/
@@ -38,8 +41,9 @@ public abstract class Item {
 
 	/**
 	 * Each item have a use
+	 * @param simulator 
 	 */
-	public String use(){return "";};
+	public String use(Simulator simulator){return "";};
 	
 	@Override
 	public String toString(){
@@ -47,8 +51,13 @@ public abstract class Item {
 	}
 	@Override
 	public boolean equals(Object obj){
-		Item tmp=(Item)obj;
-		if (this.getName().equals(tmp.getName())){return true;}
+	    if (this == obj){
+	        return true;
+	    }
+	    if(obj instanceof Item){
+	        Item tmp=(Item)obj;
+	        if (this.getName().equals(tmp.getName()) && this.getWeight()==tmp.getWeight()){return true;}
+	    }
 		return false;
 	}
 }

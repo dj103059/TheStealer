@@ -1,5 +1,6 @@
 package item;
 
+import main.Simulator;
 import enumate.EnumItem;
 
 /**
@@ -16,7 +17,7 @@ public class Box extends Item {
 	}
 	
 	@Override
-	public String use(){
+	public String use(Simulator simul){
 		String s;
 		s = "use the command HIDE if you want use it";
 		return s;

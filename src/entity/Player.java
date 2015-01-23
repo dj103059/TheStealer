@@ -53,14 +53,14 @@ public class Player extends Entity{
         tab[x-1][y].addNoise(-2);
         tab[x][y+1].addNoise(-2);
         tab[x][y-1].addNoise(-2);
+        tab[x+1][y-1].addNoise(-1);
         tab[x+1][y+1].addNoise(-1);
         tab[x-1][y-1].addNoise(-1);
         tab[x-1][y+1].addNoise(-1);
-        tab[x+1][y-1].addNoise(-1);
-        if (x+2<=tab.length-2){tab[x+2][y].addNoise(-1);}
-        if (x-2>=0){tab[x-2][y].addNoise(-1);}
-        if (y+2<=tab.length-2){tab[x][y+2].addNoise(-1);}
-        if (y-2>=0){tab[x][y-2].addNoise(-1);}
+        if (!tab[x+1][y].equals(new Wall())&&(x+2<=tab.length-2)){tab [x+2][y].addNoise(-1);}
+        if (!tab[x-1][y].equals(new Wall())&&(x-2>0)){tab [x-2][y].addNoise(-1);}
+        if (!tab[x][y+1].equals(new Wall())&&(y+2<=tab.length-2)){tab [x][y+2].addNoise(-1);}
+        if (!tab[x][y-1].equals(new Wall())&&(y-2>0)){tab [x][y-2].addNoise(-1);}
     }/**
      * Add noise to the rooms
      * @param tab Rooms
@@ -77,10 +77,10 @@ public class Player extends Entity{
         tab[x+1][y+1].addNoise(1);
         tab[x-1][y-1].addNoise(1);
         tab[x-1][y+1].addNoise(1);
-        if (!tab[x+1][y].equals(new Wall())){tab [x+2][y].addNoise(1);}
-        if (!tab[x-1][y].equals(new Wall())){tab [x-2][y].addNoise(1);}
-        if (!tab[x][y+1].equals(new Wall())){tab [x][y+2].addNoise(1);}
-        if (!tab[x][y-1].equals(new Wall())){tab [x][y-2].addNoise(1);}
+        if (!tab[x+1][y].equals(new Wall())&&(x+2<=tab.length-2)){tab [x+2][y].addNoise(1);}
+        if (!tab[x-1][y].equals(new Wall())&&(x-2>0)){tab [x-2][y].addNoise(1);}
+        if (!tab[x][y+1].equals(new Wall())&&(y+2<=tab.length-2)){tab [x][y+2].addNoise(1);}
+        if (!tab[x][y-1].equals(new Wall())&&(y-2>0)){tab [x][y-2].addNoise(1);}
         
     }
 	/**
@@ -126,8 +126,8 @@ public class Player extends Entity{
 	 * @param tab	Rooms
 	 */
 	public void move(Room next, Room[][] tab){
+	    resetNoise(tab);
 		setCurrentRoom(next);
-		resetNoise(tab);
 		addNoise(tab);
 	}
 	

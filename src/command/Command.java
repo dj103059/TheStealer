@@ -1,6 +1,6 @@
 package command;
 
-import main.Main;
+import main.Simulator;
 
 public abstract class Command {
     /**
@@ -9,5 +9,5 @@ public abstract class Command {
      *          the second word of what the user types
      * @return a String which describes what happens
      */
-    public abstract String act(String secondWord, Main main);
+    public abstract String act(String secondWord, Simulator simul);
 }

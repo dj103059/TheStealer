@@ -1,4 +1,5 @@
 package item;
+import main.Simulator;
 import enumate.EnumItem;
 import room.*;
 
@@ -44,7 +45,8 @@ public class Map extends Item {
 	/**
 	 * Return a String whitch contains the position of the different entity in the area.
 	 */
-	public String use(){
+	@Override
+	public String use(Simulator simul){
 		String s="";
 		for (int i=0;i<tabRoom.length;i++)
 		{

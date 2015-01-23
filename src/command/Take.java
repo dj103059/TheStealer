@@ -1,16 +1,13 @@
 package command;
 
-import java.util.Scanner;
-
 import room.Room;
 import room.RoomGold;
 import item.Item;
 import entity.Player;
-import enumate.EnumGold;
-import enumate.EnumGolds;
 import enumate.EnumItem;
 import enumate.Items;
 import main.Main;
+import main.Simulator;
 
 public class Take extends Command{
 
@@ -18,67 +15,40 @@ public class Take extends Command{
      * The player takes an object in his current room
      */
     @Override
-    public String act(String secondWord, Main main) {
+    public String act(String secondWord, Simulator simul) {
         String itemToTake=secondWord;
         Items correctItems=new Items();
         //get all the correct items from EnumItem
         EnumItem item = correctItems.getItem(secondWord);
-        Player hero = main.getHero();
+        Player hero = simul.getHero();
         Room currentRoom=hero.getCurrentRoom();
         //if he wants to take the gold
         if(item.equals(EnumItem.GOLD) && currentRoom.equals(new RoomGold("default room gold","roomgold"))){
             RoomGold goldRoom=(RoomGold) currentRoom;
-            int gold = getGold(main);
+            int gold = Main.parseGold("take");
             //verify if he can take this amount of gold
             if(goldRoom.getGold()<gold){
-                return "The gold room hasn't this much gold in it.";
+                return "The gold room hasn't this much gold in it.\n";
             }
             System.out.println("gold : "+gold);
             if(!hero.add(null,gold)){
-                return "You are too heavy, you can't take this amount of gold";
+                return "You are too heavy, you can't take this amount of gold\n";
             }
             goldRoom.setGold(goldRoom.getGold()-gold);
-            main.actGuards();
-            return "You take "+gold+" gold";
+            String end = simul.endTurn();
+            return "You take "+gold+" gold\n"+end;
         }
         //otherwise he wants to take an item
         Item it = currentRoom.getItem(itemToTake);
         if(it==null){
-            return "There isn't any "+itemToTake+" to take.";
+            return "There isn't any "+itemToTake+" to take.\n";
         }
         //we add it in his inventory
         hero.add(it,0);
         //we remove it from the current room
         currentRoom.removeItem(it);
-        main.actGuards();
-        return itemToTake+" has been took on the floor.";
+        String end = simul.endTurn();
+        return itemToTake+" has been took on the floor.\n"+end;
     }
     
-    /**
-     * Ask the user how much money he wants
-     * @param main
-     *          the main
-     * @return the number of gold he wants
-     */
-    private int getGold(Main main){
-        EnumGolds correctGold=new EnumGolds();
-        @SuppressWarnings("resource")
-		Scanner reader = new Scanner(System.in);
-        String inputLine;   // will hold the full input line
-        String word1 = null;
-        do{
-            main.printer("How much gold do you want to take? ");
-            main.printer("You can only take : "+correctGold.showAll());
-            main.printer("> ");     // print prompt
-            inputLine = reader.nextLine();
-            // Find up the word on the line.
-            @SuppressWarnings("resource")
-			Scanner tokenizer = new Scanner(inputLine);
-            if(tokenizer.hasNext()) {
-                word1 = tokenizer.next();      // get first word
-            }
-        }while(!correctGold.isGold(word1));  //does it while the word is incorrect (not 10,20,50,100,etc...)
-        EnumGold gold = correctGold.getGold(word1);
-        return gold.getNumber();
-    }
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import entity.Player;
 import enumate.EnumDirection;
 import room.Room;
-import main.Main;
+import main.Simulator;
 
 /**
  * Move command of the game. We use it as "go east" or west, north, south.
@@ -21,7 +21,7 @@ public class Go extends Command{
      * @return a String which describes what happens
      */
     @Override
-    public String act(String secondWord, Main main) {
+    public String act(String secondWord, Simulator main) {
         int[] coordinate = new int[2];
         //get the map and the coordinates
         Room[][] map = main.getBankMap();
@@ -72,10 +72,10 @@ public class Go extends Command{
             nextRoom.addEntity(hero);
             currentRoom.removeEntity(hero);
             hero.move(nextRoom, map);
-            main.actGuards();
-            return "You go "+secondWord+", "+nextRoom.getLongDescription();
+            String end = main.endTurn();
+            return "You go "+secondWord+", "+nextRoom.getLongDescription()+"\n"+end;
         }
-        return "You can't go "+secondWord;
+        return "You can't go "+secondWord+"\n";
     }
     
     /**

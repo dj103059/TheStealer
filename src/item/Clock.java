@@ -1,5 +1,6 @@
 package item;
 
+import main.Simulator;
 import enumate.EnumItem;
 import timer.Timer;
 
@@ -18,7 +19,7 @@ public class Clock extends Item{
 		}
 		
 		@Override
-		public String use(){
+		public String use(Simulator simul){
 			return "Time Remaining "+this.time.getTimer()+" min /n";
 		}
 		public Timer getTime() {

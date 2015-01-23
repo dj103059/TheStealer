@@ -5,7 +5,7 @@ import java.util.HashMap;
 import item.Item;
 import entity.Player;
 import enumate.EnumItem;
-import main.Main;
+import main.Simulator;
 
 public class Hide extends Command{
 
@@ -14,15 +14,15 @@ public class Hide extends Command{
      * otherwise he can't.
      */
     @Override
-    public String act(String secondWord, Main main) {
-        Player hero = main.getHero();
+    public String act(String secondWord, Simulator simul) {
+        Player hero = simul.getHero();
         HashMap<String,Item> roomInventory = hero.getCurrentRoom().getListofitem();
         if(roomInventory.containsKey(EnumItem.BOX.toString())){
-            hero.hide(main.getBankMap());
-            main.actGuards();
-            return "You are hiding under a box.";
+            hero.hide(simul.getBankMap());
+            String end=simul.endTurn();
+            return "You are hiding under a box.\n"+end;
         }
-        return "You can't hide here, there isn't any box.";
+        return "You can't hide here, there isn't any box.\n";
     }
 
 }

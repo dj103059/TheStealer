@@ -1,4 +1,7 @@
 package item;
+
+import main.Simulator;
+
 /**
  * the Pass (key) item
  *
@@ -11,6 +14,11 @@ public class Pass extends Item {
 			this.setDescription(" the pass for a specific door.");
 			this.setName(name);
 			this.setWeight(WEIGHT);
+		}
+		
+		@Override
+		public String use(Simulator simul){
+		    return "It's a "+this.getName();
 		}
 		
 		public Pass(){
