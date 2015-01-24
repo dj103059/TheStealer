@@ -4,6 +4,7 @@ package room;
  * Specific room which can contains some golds.
  *
  */
+@SuppressWarnings("serial")
 public class RoomGold extends RoomPass{
 	
 	// the amount of gold that the room contains

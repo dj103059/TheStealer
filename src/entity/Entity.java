@@ -7,6 +7,7 @@ import room.*;
  * @author user
  *
  */
+@SuppressWarnings("serial")
 public abstract class Entity implements Serializable {
 	/**
 	 * 

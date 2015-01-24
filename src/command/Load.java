@@ -9,7 +9,6 @@ import entity.Player;
 import item.Clock;
 import main.Simulator;
 import item.Map;
-import room.*;
 import entity.*;
 public class Load extends Command {
 

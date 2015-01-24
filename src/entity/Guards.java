@@ -5,6 +5,7 @@ import room.*;
  * @author user
  *
  */
+@SuppressWarnings("serial")
 public class Guards extends Entity{
 	// If he's active
 	private boolean active;	

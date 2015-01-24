@@ -8,6 +8,7 @@ import room.*;
  * @author user
  *
  */
+@SuppressWarnings("serial")
 public class MovingGuards extends Guards{
 	// Constructor
 	public MovingGuards(Room currentRoom, boolean bribed, boolean active, String name) {super(currentRoom, bribed, active,name);}

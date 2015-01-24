@@ -6,6 +6,7 @@ import main.Simulator;
  * The Pass item wich has the role of a key.
  *
  */
+@SuppressWarnings("serial")
 public class Pass extends Item {
 	// constant for the weigth of a pass
 		private static final int WEIGHT = 1 ;

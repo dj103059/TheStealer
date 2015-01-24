@@ -11,6 +11,7 @@ import item.*;
  * 
  */
 
+@SuppressWarnings("serial")
 public class RoomPass extends Room {
 	//pass 1 particular for the room
 	private Pass pass1;

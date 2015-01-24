@@ -21,6 +21,7 @@ import item.*;
  * Simulator of the game
  *
  */
+@SuppressWarnings("serial")
 public class Simulator implements Serializable{
     //the map
     private Room[][] bankMap;

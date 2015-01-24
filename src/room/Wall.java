@@ -10,6 +10,7 @@ import java.util.HashMap;
  *
  */
 
+@SuppressWarnings("serial")
 public class Wall extends Room{
 	
 	/** 

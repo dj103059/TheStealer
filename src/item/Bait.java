@@ -11,6 +11,7 @@ import enumate.EnumItem;
  * The item Bait which has the role of a lure.
  *
  */
+@SuppressWarnings("serial")
 public class Bait extends Item{
 	// constant for the weigth of the lure
 	private static final int WEIGTH = 5 ;

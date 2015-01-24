@@ -5,7 +5,6 @@ package command;
  */
 
 import save.Serialization;
-import main.Main;
 import main.Simulator;
 
 public class Save extends Command {

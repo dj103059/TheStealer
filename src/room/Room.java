@@ -12,6 +12,7 @@ import java.util.Set;
  * Class for classical room 
  *
  */
+@SuppressWarnings("serial")
 public class Room implements Serializable{
     //name of the room
     private String name;

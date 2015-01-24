@@ -7,6 +7,7 @@ import timer.Timer;
  * The box item which allow the player to hide in for several turn.
  *
  */
+@SuppressWarnings("serial")
 public class Clock extends Item{
 	// constant for the weigth of the box
 		private static final int weigth = 1 ;

@@ -1,12 +1,13 @@
 package room;
 
-import item.Bait;
+
 import item.Pass;
 
 /**
  * Specific room with the  treasure room key
  *
  */
+@SuppressWarnings("serial")
 public class DirectorOffice extends RoomPass{
 	
 	/*

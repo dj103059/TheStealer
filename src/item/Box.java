@@ -6,6 +6,7 @@ import enumate.EnumItem;
 /**
  * The box item
  **/
+@SuppressWarnings("serial")
 public class Box extends Item {
 	// constant for the weigth of the box
 	private static final int WEIGTH = 500 ;

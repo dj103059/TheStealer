@@ -8,6 +8,7 @@ import java.util.HashMap;
  * @author user
  *
  */
+@SuppressWarnings("serial")
 public class Player extends Entity{
 	// If the player is hidden
 	private int hidden;

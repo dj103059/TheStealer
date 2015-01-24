@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Class for the game's timer
  */
+@SuppressWarnings("serial")
 public class Timer implements Serializable{
 	//the time for the game 
 	private int timer ;

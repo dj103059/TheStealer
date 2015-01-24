@@ -7,6 +7,7 @@ import main.Simulator;
 /**
  * Every item inherit of Item class
  **/
+@SuppressWarnings("serial")
 public abstract class Item implements Serializable{
 	//Name of item
 	private String name; 

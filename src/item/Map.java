@@ -4,6 +4,7 @@ import enumate.EnumItem;
 import room.*;
 
 
+@SuppressWarnings("serial")
 public class Map extends Item {
 	//constant weight of the map
 	private static final int WEIGTH = 5 ;
