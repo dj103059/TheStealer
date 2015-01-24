@@ -1,6 +1,9 @@
 package main;
 
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 import command.CommandLine;
@@ -124,9 +127,13 @@ public class Main {
     /**
      * permits to launch the game
      * @param args
+     * @throws IOException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 		Main main = new Main(32,32);
+		String s = System.getProperty("user.dir");
+		String path_of_PDF = s + "\\MAP.pdf";
+		Desktop.getDesktop().open(new File(path_of_PDF));
 		main.play();
 	}
 
