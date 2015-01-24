@@ -1,5 +1,6 @@
 package room;
 
+import item.Bait;
 import item.Pass;
 
 /**
