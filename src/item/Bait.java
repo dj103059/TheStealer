@@ -8,29 +8,42 @@ import enumate.EnumItem;
 
 /**
  * 
- * The item Lure
+ * The item Bait which has the role of a lure.
  *
  */
 public class Bait extends Item{
-// constant for the weigth of the lure
+	// constant for the weigth of the lure
 	private static final int WEIGTH = 5 ;
+	//constant which will says during how many time maximum a bait can stay active when actived.
 	private static final int MAX_TURN=5;
+	//boolean which say if the bait is active or not.
 	private boolean isActive;
+	// numer which says during how many time a bait can stay active when actived.
 	private int numbTurn;
+	//coordinate of the bait.
 	private int[] coordinate;
+	
+	/**
+	 * Return the numbTurn of the bait.
+	 * @return
+	 */
 	public int getNumbTurn() {
 		return numbTurn;
 	}
+	
+	/**
+	 * Set the numbTurn of the bait.
+	 * @param numbTurn
+	 */
 
 	public void setNumbTurn(int numbTurn) {
 		this.numbTurn = numbTurn;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
 
-	//constructor
+	/**
+	 * Create a bait.
+	 */
 	public Bait (){
 		this.setDescription(" Use it to create a distraction !");
 		this.setName(EnumItem.BAIT.toString());
@@ -69,9 +82,12 @@ public class Bait extends Item{
 		
 		
 	}
+	/**
+	 * If the bait is active , decrement his number of turn remaining or deactivate it if the number of turn remaining is 0.
+	 */
 		
 	public void decrementBait(){
-		System.out.println("numb turn : "+numbTurn);
+		
 	    if(isActive){
 				
 			if(numbTurn>0){
@@ -84,25 +100,44 @@ public class Bait extends Item{
 		}
 	}
 	
+	/**
+	 * Return true if the bait is active , false else.
+	 * @return
+	 */
 	public boolean getIsActive()
 	{
 		return isActive;
 	}
+	/**
+	 * Refill the remaining turn of the lure
+	 */
 	public void rechargeBait()
 	{
 		this.numbTurn=MAX_TURN;
-		System.out.println("numb turn : " +numbTurn);
+		
 	}
 	
+	/**
+	 * Set the isActive boolean
+	 * @param b
+	 */
 	public void setIsActive(boolean b)
 	{
 		isActive=b;
 	}
 	
+	/**
+	 * Set the coordinate of the bait.
+	 * @param coordinate
+	 */
 	public void setCoordinate(int[] coordinate){
 	    this.coordinate=coordinate;
 	}
 	
+	/**
+	 * Return the coordinate of the bait.
+	 * @return
+	 */
 	public int[] getCoordinate(){
 	    return coordinate;
 	}

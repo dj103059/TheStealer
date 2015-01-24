@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,12 @@ import room.RoomPass;
 import room.Wall;
 import timer.Timer;
 import item.*;
-import item.Map;
 
 /**
  * Simulator of the game
  *
  */
-public class Simulator {
+public class Simulator implements Serializable{
     //the map
     private Room[][] bankMap;
     
@@ -31,8 +31,9 @@ public class Simulator {
     private int[] coordinate;
     //the current room where the character is
     private Room currentRoom;
+    
     private int[] finishRoom;
-    Timer time;
+    private Timer time;
     //the list of guards
     private List<Guards> listGuards;
     //the list of the baits
@@ -51,6 +52,7 @@ public class Simulator {
      * @param length
      * @param width
      */
+   
     public Simulator(int length, int width){
         //initialize time and score and coordinate
         time = new Timer(900);
@@ -610,5 +612,77 @@ public class Simulator {
      */
     public boolean getGameOver(){
         return gameOver;
+    }
+    /**
+     * Get the time remaining
+     * @return time
+     */
+   
+	public Timer getTime() {
+		return time;
+	}
+	
+
+	/**
+	 * Set the time.
+	 * @param time
+	 */
+	public void setTime(Timer time) {
+		this.time = time;
+	}
+	
+	/**
+	 * Get the listGuards
+	 * @return listGuards
+	 */
+	public List<Guards> getListGuards() {
+		return listGuards;
+	}
+	
+	/**
+	 * Set the listGuards
+	 * @param listGuards
+	 */
+	public void setListGuards(List<Guards> listGuards) {
+		this.listGuards = listGuards;
+	}
+	/**
+	 * get the listBaits
+	 * @returnlistBaits
+	 */
+	public List<Bait> getListBaits() {
+		return listBaits;
+	}
+	
+	/**
+	 * Set the listBaits
+	 * @param listBaits
+	 */
+	public void setListBaits(List<Bait> listBaits) {
+		this.listBaits = listBaits;
+	}
+	
+	/**
+	 * set the currentRoom
+	 * @param currentRoom
+	 */
+	public void setCurrentRoom(Room currentRoom) {
+		this.currentRoom = currentRoom;
+	}
+	
+	/**
+	 * set the score
+	 * @param score
+	 */
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	/**
+	 * get the current Coordinate of the player
+	 * @return
+	 */
+    public int[] getCoordinate(){
+    	return coordinate;
     }
 }

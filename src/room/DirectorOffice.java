@@ -4,7 +4,7 @@ import item.Bait;
 import item.Pass;
 
 /**
- * specific room with the  treasure room key
+ * Specific room with the  treasure room key
  *
  */
 public class DirectorOffice extends RoomPass{
@@ -18,7 +18,7 @@ public class DirectorOffice extends RoomPass{
 	}
 	
 	/**
-	 * constructor particular
+	 * Second constructor whitch allow to place a key in a second room
 	 * @param room the room with the director office key
 	 */
 	public DirectorOffice(String description, String name,Room room) {

@@ -10,7 +10,7 @@ public class Map extends Item {
 	private Room [][] tabRoom;
 	
 	/**
-	 * Create a map associated at the area
+	 * Create a map associated to the area
 	 * 
 	 * @param allRoom
 	 */
@@ -19,6 +19,7 @@ public class Map extends Item {
 		this.setName(EnumItem.MAP.toString());
 		this.setWeight(WEIGTH);
 		this.setTabRoom(allRoom);
+		//this.setName("map");
 		
 	}
 	
@@ -43,7 +44,7 @@ public class Map extends Item {
 	
 	
 	/**
-	 * Return a String whitch contains the position of the different entity in the area.
+	 * Return a String which contains the position of the different entities of the area.
 	 */
 	@Override
 	public String use(Simulator simul){

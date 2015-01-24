@@ -5,24 +5,36 @@ package room;
 import java.util.HashMap;
 
 import item.*;
-/*
- * room who need a pass to enter
+
+/**
+ * Class for room witch required a pass to go in
+ * 
  */
 
 public class RoomPass extends Room {
 	//pass 1 particular for the room
 	private Pass pass1;
-	// pass all room
+	// pass for all room
 	private Pass pass2;
 
-	//constructor
+	/**
+	 * Create a room with the description and the name given in parameter
+	 * @param description
+	 * @param name
+	 */
 	public RoomPass(String description, String name) {
 		super(description, name);
 		this.pass1 = new Pass(name);
 		this.pass2 = new Pass("multipass");
 	}
 	
-	//constructor with the room who you drop the key
+	/**
+	 * Create a room with the description and the name given in parameter and the pass of the room in the room
+	 * given in parameter
+	 * @param description
+	 * @param name
+	 * @param room
+	 */
 	public RoomPass(String description, String name,Room room) {
 		super(description, name);
 		this.pass1 = new Pass(name);
@@ -30,23 +42,36 @@ public class RoomPass extends Room {
 		room.addItem(this.pass1);
 	}
 
-	//getter an setter
+	/**
+	 * Get the pass required to open the room
+	 * @return pass1
+	 */
 	public Pass getPass1() {
 		return pass1;
 	}
 	
+	/**
+	 * Get the second pass whitch can open the room (common to all room)
+	 * @return
+	 */
 	public Pass getPass2() {
 		return pass2;
 	}
 
+	/**
+	 * Set the pass required to open the room
+	 */
 	public void setPass1(Pass pass1) {
 		this.pass1 = pass1;
 	}
 
-	public void setPass2(Pass pass2) {
-		this.pass2 = pass2;
-	}
 	
+	/**
+     * Return true if the item contains in the inventory allow the player to go in the room, false else.
+     * @param inventory
+     * @return boolean
+     */
+	@Override
 	public boolean canEnter(HashMap<String, Item> inventory)
 	{
 		

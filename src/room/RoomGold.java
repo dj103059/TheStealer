@@ -1,18 +1,14 @@
 package room;
 
 /**
- * The treasure room
+ * Specific room which can contains some golds.
  *
  */
 public class RoomGold extends RoomPass{
-	//the amont of gold
 	
-	/**
-	 * The gold that the room contains
-	 */
+	// the amount of gold that the room contains
 	private int gold;
 
-	//constructor
 	
 	/**
 	 * Create a RoomGold with a description, a name and an amount of gold of 0.
@@ -66,6 +62,7 @@ public class RoomGold extends RoomPass{
 		return gold;
 	}
 	
+	@Override
 	public String printItem()
 	{
 		String l=super.printItem();

@@ -1,8 +1,11 @@
 package timer;
+
+import java.io.Serializable;
+
 /**
  * Class for the game's timer
  */
-public class Timer {
+public class Timer implements Serializable{
 	//the time for the game 
 	private int timer ;
 	/**
@@ -24,6 +27,11 @@ public class Timer {
 	
 	}
 	
+	/**
+	 * Decrement the time and return true or false to say if there is still some time remaining or not.
+	 * @param n
+	 * @return
+	 */
 	public boolean decrementTime(int n)
 	{
 		if (timer-n>0)

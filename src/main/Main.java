@@ -86,7 +86,8 @@ public class Main {
         System.out.println("You are a thief in a bank");
         System.out.println("You have some time to go to the treasure room and return to the starting point.");
         System.out.println("Be careful, there are guards, if you are seen, it's game over.");
-        System.out.println("You will also need keys to move, find them.");
+        System.out.println("You will also need keys to move, find them.");      
+        System.out.println("You can use the command \"help\" to see the different commands");
         System.out.println("Let's go!");
     }
     

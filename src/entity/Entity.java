@@ -1,11 +1,17 @@
 package entity;
+import java.io.Serializable;
+
 import room.*;
 /**
  * Defines all the entities
  * @author user
  *
  */
-public abstract class Entity {
+public abstract class Entity implements Serializable {
+	/**
+	 * 
+	 */
+
 	// Where the entity currently is
 	private Room currentRoom;	
 	// Name of the entity

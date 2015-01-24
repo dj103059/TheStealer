@@ -1,6 +1,4 @@
-package enumate;
-
-import command.*;
+package command;
 
 /**
  * Representations of all the CommandWord which exists.
@@ -8,11 +6,7 @@ import command.*;
  */
 public enum CommandWord {
 
-    GO("go",new Go()),USE("use", new Use()),HIDE("hide",new Hide()),
-    TAKE("take",new Take()),DROP("drop",new Drop()),QUIT("quit",new End()),
-    INVENTORY("inventory",new Inventory()),WAIT("wait",new Wait()),HELP("help",new Help()),SAVE("save",new Save()),LOAD("load",new Load()),
-
-    UNKNOWN("?",new Unknown());
+    GO("go",new Go()),UNKNOWN("?",new Unknown());
     
     // The command string.
     private String commandString;

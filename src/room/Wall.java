@@ -4,13 +4,21 @@ import item.Item;
 
 import java.util.HashMap;
 
-
+/**
+ * Specific room witch have the role of a wall.
+ * 
+ *
+ */
 
 public class Wall extends Room{
 	
+	/** 
+	 * Constructor witch create a wall
+	 */
 	public Wall(){
 		super("This room is a Wall","Wall");
 	}
+	
 	
 	@Override
 	public boolean equals(Object obj){

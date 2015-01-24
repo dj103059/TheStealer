@@ -3,13 +3,17 @@ package item;
 import main.Simulator;
 
 /**
- * the Pass (key) item
+ * The Pass item wich has the role of a key.
  *
  */
 public class Pass extends Item {
 	// constant for the weigth of a pass
 		private static final int WEIGHT = 1 ;
-		//constructor
+		
+		/**
+		 * Create a pass with a specific name, it will allow to open room's which have same name than it.
+		 * @param name
+		 */
 		public Pass (String name){
 			this.setDescription(" the pass for a specific door.");
 			this.setName(name);
@@ -21,8 +25,11 @@ public class Pass extends Item {
 		    return "It's a "+this.getName();
 		}
 		
+		/**
+		 * Create a pass which allow go in all the room
+		 */
 		public Pass(){
-			this.setDescription("A pass for all door");
+			this.setDescription("A pass for all room");
 			this.setName("multipass");
 			this.setWeight(WEIGHT);
 		}
