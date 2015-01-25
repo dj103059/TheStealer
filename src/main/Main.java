@@ -132,7 +132,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 		Main main = new Main(32,32);
 		String s = System.getProperty("user.dir");
-		String path_of_PDF = s + "\\MAPs.pdf";
+		String path_of_PDF = s + "\\MAP.pdf";
 		Desktop.getDesktop().open(new File(path_of_PDF));
 		main.play();
 	}
